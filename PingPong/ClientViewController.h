@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ClientViewController.h
 //  PingPong
 //
 //  Created by DX169-XL on 2014-09-03.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ServerViewController : UIViewController 
+@interface ClientViewController : UIViewController
 
 @end

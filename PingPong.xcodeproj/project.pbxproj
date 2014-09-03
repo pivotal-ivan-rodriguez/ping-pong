@@ -23,6 +23,7 @@
 		423C0F9E19B75D2600BB5A05 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 423C0F9C19B75D2600BB5A05 /* InfoPlist.strings */; };
 		423C0FA019B75D2600BB5A05 /* PingPongTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0F9F19B75D2600BB5A05 /* PingPongTests.m */; };
 		423C0FAC19B75F7E00BB5A05 /* MultipeerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0FAB19B75F7E00BB5A05 /* MultipeerManager.m */; };
+		423C0FAF19B7659600BB5A05 /* ClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0FAE19B7659600BB5A05 /* ClientViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		423C0F9F19B75D2600BB5A05 /* PingPongTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PingPongTests.m; sourceTree = "<group>"; };
 		423C0FAA19B75F7E00BB5A05 /* MultipeerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipeerManager.h; sourceTree = "<group>"; };
 		423C0FAB19B75F7E00BB5A05 /* MultipeerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipeerManager.m; sourceTree = "<group>"; };
+		423C0FAD19B7659600BB5A05 /* ClientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientViewController.h; sourceTree = "<group>"; };
+		423C0FAE19B7659600BB5A05 /* ClientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 				423C0F8619B75D2600BB5A05 /* Main_iPad.storyboard */,
 				423C0F8919B75D2600BB5A05 /* ServerViewController.h */,
 				423C0F8A19B75D2600BB5A05 /* ServerViewController.m */,
+				423C0FAD19B7659600BB5A05 /* ClientViewController.h */,
+				423C0FAE19B7659600BB5A05 /* ClientViewController.m */,
 				423C0F8C19B75D2600BB5A05 /* Images.xcassets */,
 				423C0F7819B75D2600BB5A05 /* Supporting Files */,
 			);
@@ -270,6 +275,7 @@
 				423C0F8219B75D2600BB5A05 /* AppDelegate.m in Sources */,
 				423C0F7E19B75D2600BB5A05 /* main.m in Sources */,
 				423C0FAC19B75F7E00BB5A05 /* MultipeerManager.m in Sources */,
+				423C0FAF19B7659600BB5A05 /* ClientViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,10 +410,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PingPong/PingPong-Prefix.pch";
 				INFOPLIST_FILE = "PingPong/PingPong-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "CFB8D54D-B404-4DF3-B9BB-2C01976A5067";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -417,10 +426,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PingPong/PingPong-Prefix.pch";
 				INFOPLIST_FILE = "PingPong/PingPong-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "CFB8D54D-B404-4DF3-B9BB-2C01976A5067";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -484,6 +496,7 @@
 				423C0FA519B75D2600BB5A05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		423C0FA619B75D2600BB5A05 /* Build configuration list for PBXNativeTarget "PingPongTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +505,7 @@
 				423C0FA819B75D2600BB5A05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

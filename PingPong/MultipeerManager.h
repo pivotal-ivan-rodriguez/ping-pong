@@ -10,11 +10,37 @@
 
 @class MCBrowserViewController;
 
+@protocol MultipeerServerDelegate <NSObject>
+
+- (void)leftPlayerScored;
+- (void)rightPlayerScored;
+- (void)setupLeftImage:(UIImage *)image;
+- (void)setupRightImage:(UIImage *)image;
+
+@end
+
+@protocol MultipeerClientDelegate <NSObject>
+
+
+- (void)hasConnected;
+- (void)hasDisconnected;
+- (void)playerDidWin;
+- (void)playerDidLose;
+
+@end
+
 @interface MultipeerManager : NSObject
+
+@property (nonatomic, weak) id<MultipeerClientDelegate>clientDelegate;
+@property (nonatomic, weak) id<MultipeerServerDelegate>serverDelegate;
 
 - (void)setupPeerAndSessionWithDisplayName:(NSString *)displayName;
 - (MCBrowserViewController *)createMCBrowser;
 - (void)advertiseSelf:(BOOL)shouldAdvertise;
+
+- (void)broadcastString:(NSString *)string;
+- (void)sendMessage:(NSString *)string toPeer:(NSString *)peerName;
+- (void)sendResourcePath:(NSString *)path toPeer:(NSString *)peerName;
 
 + (instancetype)sharedInstance;
 
