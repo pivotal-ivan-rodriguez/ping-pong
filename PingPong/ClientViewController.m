@@ -9,13 +9,16 @@
 #import "ClientViewController.h"
 #import "MultipeerManager.h"
 
-@interface ClientViewController () <MultipeerClientDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@import AVFoundation;
+
+@interface ClientViewController () <MultipeerClientDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,AVAudioPlayerDelegate>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameSegmentedControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *playerSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *addProfileImageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *connectionStateLabel;
+@property (nonatomic, strong) AVAudioPlayer *player;
 
 @end
 
@@ -28,15 +31,17 @@
     [MultipeerManager sharedInstance].clientDelegate = self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
+    //[self setupAsLeftPlayer];
 }
 
 #pragma mark - MultipeerManagerDelegate methods
 
 - (void)hasConnected {
+    //[self initialSetup];
+
     self.connectionStateLabel.text = @"Connected";
     self.connectionStateLabel.textColor = [UIColor greenColor];
 }
@@ -52,6 +57,17 @@
 
 - (void)playerDidLose {
     [[[UIAlertView alloc] initWithTitle:@"You lose!" message:@"Boo!!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+}
+
+- (void)playAudioWithResourceName:(NSString *)name {
+    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"m4a"];
+    NSError *error;
+    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] error:&error];
+    self.player = player;
+    BOOL success = [player prepareToPlay];
+    if (success) {
+        [player play];
+    }
 }
 
 #pragma mark - IBActions
@@ -105,9 +121,7 @@
 
         UIImage *image = info[UIImagePickerControllerOriginalImage];
 
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:@"savedImage.png"];
+        NSString *savedImagePath = [self imagePath];
         NSData *imageData = UIImagePNGRepresentation(image);
         [imageData writeToFile:savedImagePath atomically:NO];
 
@@ -131,13 +145,29 @@
 }
 
 - (void)setupAsLeftPlayer {
+    [[MultipeerManager sharedInstance] advertiseSelf:NO];
+
     [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:@"Left"];
     [[MultipeerManager sharedInstance] advertiseSelf:YES];
 }
 
 - (void)setupAsRightPlayer {
+    [[MultipeerManager sharedInstance] advertiseSelf:NO];
+
     [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:@"Right"];
     [[MultipeerManager sharedInstance] advertiseSelf:YES];
+}
+
+- (void)initialSetup {
+    [self setupGameWithPointsToWin:@(11)];
+    [[MultipeerManager sharedInstance] sendResourcePath:[self imagePath] toPeer:@"Server"];
+}
+
+- (NSString *)imagePath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:@"savedImage.png"];
+    return savedImagePath;
 }
 
 @end

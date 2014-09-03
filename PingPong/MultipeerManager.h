@@ -20,6 +20,14 @@
 - (void)setupGameWithPointsToWin:(NSInteger)pointsToWin;
 - (void)minusOneToLeftScore;
 - (void)minusOneToRightScore;
+- (void)didStartDownloadingPhoto;
+- (void)photoDownloadPercent:(CGFloat)percent;
+- (void)leftPlayerConnected;
+- (void)rightPlayerConnected;
+- (void)leftPlayerDisconnected;
+- (void)rightPlayerDisconnected;
+- (void)serverConnected;
+- (void)serverDisconnected;
 
 @end
 
@@ -30,6 +38,7 @@
 - (void)hasDisconnected;
 - (void)playerDidWin;
 - (void)playerDidLose;
+- (void)playAudioWithResourceName:(NSString *)name;
 
 @end
 

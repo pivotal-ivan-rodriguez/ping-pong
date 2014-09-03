@@ -24,6 +24,8 @@
 		423C0FA019B75D2600BB5A05 /* PingPongTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0F9F19B75D2600BB5A05 /* PingPongTests.m */; };
 		423C0FAC19B75F7E00BB5A05 /* MultipeerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0FAB19B75F7E00BB5A05 /* MultipeerManager.m */; };
 		423C0FAF19B7659600BB5A05 /* ClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0FAE19B7659600BB5A05 /* ClientViewController.m */; };
+		42F11AAC19B7AB2E0080C6F5 /* yourServe.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 42F11AAB19B7AB2E0080C6F5 /* yourServe.m4a */; };
+		42F11AAE19B7AE740080C6F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F11AAD19B7AE740080C6F5 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		423C0FAB19B75F7E00BB5A05 /* MultipeerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipeerManager.m; sourceTree = "<group>"; };
 		423C0FAD19B7659600BB5A05 /* ClientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientViewController.h; sourceTree = "<group>"; };
 		423C0FAE19B7659600BB5A05 /* ClientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientViewController.m; sourceTree = "<group>"; };
+		42F11AAB19B7AB2E0080C6F5 /* yourServe.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = yourServe.m4a; sourceTree = "<group>"; };
+		42F11AAD19B7AE740080C6F5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42F11AAE19B7AE740080C6F5 /* AVFoundation.framework in Frameworks */,
 				423C0F7419B75D2600BB5A05 /* CoreGraphics.framework in Frameworks */,
 				423C0F7619B75D2600BB5A05 /* UIKit.framework in Frameworks */,
 				423C0F7219B75D2600BB5A05 /* Foundation.framework in Frameworks */,
@@ -109,6 +114,7 @@
 		423C0F7019B75D2600BB5A05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				42F11AAD19B7AE740080C6F5 /* AVFoundation.framework */,
 				423C0F7119B75D2600BB5A05 /* Foundation.framework */,
 				423C0F7319B75D2600BB5A05 /* CoreGraphics.framework */,
 				423C0F7519B75D2600BB5A05 /* UIKit.framework */,
@@ -120,6 +126,7 @@
 		423C0F7719B75D2600BB5A05 /* PingPong */ = {
 			isa = PBXGroup;
 			children = (
+				42F11AAA19B7AB2E0080C6F5 /* Voices */,
 				423C0FA919B75F7100BB5A05 /* Helpers */,
 				423C0F8019B75D2600BB5A05 /* AppDelegate.h */,
 				423C0F8119B75D2600BB5A05 /* AppDelegate.m */,
@@ -171,6 +178,14 @@
 				423C0FAB19B75F7E00BB5A05 /* MultipeerManager.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		42F11AAA19B7AB2E0080C6F5 /* Voices */ = {
+			isa = PBXGroup;
+			children = (
+				42F11AAB19B7AB2E0080C6F5 /* yourServe.m4a */,
+			);
+			path = Voices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				423C0F8819B75D2600BB5A05 /* Main_iPad.storyboard in Resources */,
+				42F11AAC19B7AB2E0080C6F5 /* yourServe.m4a in Resources */,
 				423C0F8D19B75D2600BB5A05 /* Images.xcassets in Resources */,
 				423C0F8519B75D2600BB5A05 /* Main_iPhone.storyboard in Resources */,
 				423C0F7C19B75D2600BB5A05 /* InfoPlist.strings in Resources */,

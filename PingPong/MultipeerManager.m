@@ -16,7 +16,7 @@ static NSString * const kServerServiceType = @"pingpong";
 @property (nonatomic, strong) MCPeerID *peerID;
 @property (nonatomic, strong) MCSession *session;
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiser;
-
+@property (nonatomic, strong) NSProgress *progress;
 @end
 
 @implementation MultipeerManager
@@ -79,9 +79,25 @@ static NSString * const kServerServiceType = @"pingpong";
 
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state{
     if (state == MCSessionStateConnected) {
-        [self.clientDelegate hasConnected];
+        if ([peerID.displayName isEqualToString:@"Left"]) {
+            [self.serverDelegate leftPlayerConnected];
+            [self.clientDelegate hasConnected];
+        } else if ([peerID.displayName isEqualToString:@"Right"]) {
+            [self.serverDelegate rightPlayerConnected];
+            [self.clientDelegate hasConnected];
+        } else if ([peerID.displayName isEqualToString:@"Server"]) {
+            [self.serverDelegate serverConnected];
+        }
     } else if (state == MCSessionStateNotConnected) {
-        [self.clientDelegate hasDisconnected];
+        if ([peerID.displayName isEqualToString:@"Left"]) {
+            [self.serverDelegate leftPlayerDisconnected];
+            [self.clientDelegate hasDisconnected];
+        } else if ([peerID.displayName isEqualToString:@"Right"]) {
+            [self.serverDelegate rightPlayerDisconnected];
+            [self.clientDelegate hasDisconnected];
+        } else if ([peerID.displayName isEqualToString:@"Server"]) {
+            [self.serverDelegate serverDisconnected];
+        }
     }
 }
 
@@ -112,18 +128,24 @@ static NSString * const kServerServiceType = @"pingpong";
             } else if ([peerID.displayName isEqualToString:@"Right"]) {
                 [self.serverDelegate minusOneToRightScore];
             }
+        } else if ([dataString isEqualToString:@"yourServe"]) {
+            [self.clientDelegate playAudioWithResourceName:@"yourServe"];
         }
     });
 }
 
 
 - (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress{
-//    [progress addObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted)) options:NSKeyValueObservingOptionInitial context:NULL];
+    self.progress = progress;
+    [self.progress addObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted)) options:NSKeyValueObservingOptionInitial context:NULL];
 
+    [self.serverDelegate didStartDownloadingPhoto];
 }
 
-
 - (void)session:(MCSession *)session didFinishReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID atURL:(NSURL *)localURL withError:(NSError *)error{
+
+    [self.progress removeObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted)) context:NULL];
+    self.progress = nil;
 
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:localURL]];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -138,7 +160,6 @@ static NSString * const kServerServiceType = @"pingpong";
 
 - (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID{
 }
-
 
 #pragma mark - Helper Methods
 
@@ -169,6 +190,10 @@ static NSString * const kServerServiceType = @"pingpong";
     UIGraphicsEndImageContext();
 
     return newImage;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    [self.serverDelegate photoDownloadPercent:self.progress.fractionCompleted];
 }
 
 @end

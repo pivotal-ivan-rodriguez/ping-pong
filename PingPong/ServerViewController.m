@@ -18,7 +18,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *rightServingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *leftScoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rightScoreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *peersLabel;
+@property (weak, nonatomic) IBOutlet UIProgressView *photoProgressView;
+@property (weak, nonatomic) IBOutlet UILabel *leftPlayerConnectionStatusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rightPlayerConnectionStatusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *serverConnectionStatusLabel;
 
 @property (nonatomic) NSInteger leftScore;
 @property (nonatomic) NSInteger rightScore;
@@ -39,11 +42,8 @@
 
     self.leftScore = 0;
     self.rightScore = 0;
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+    self.photoProgressView.hidden = YES;
 }
 
 #pragma mark - Helpers methods
@@ -66,10 +66,10 @@
 #pragma mark - UI updating helpers
 
 - (void)scoreUpdated {
-    [self informClientIfGameOver];
     [self updateScoreLabels];
     [self updateServingString];
-
+    [self informClientIfGameOver];
+    [self informClientOfServer];
 }
 
 - (void)informClientIfGameOver {
@@ -86,6 +86,14 @@
         [[MultipeerManager sharedInstance] sendMessage:@"win" toPeer:winnerName];
         [[MultipeerManager sharedInstance] sendMessage:@"lose" toPeer:loserName];
     }
+}
+
+- (void)informClientOfServer {
+    BOOL isLeftPlayerServing = self.leftServingLabel.hidden == NO;
+
+    NSString *playerName = isLeftPlayerServing ? @"Left" : @"Right";
+
+    [[MultipeerManager sharedInstance] sendMessage:@"yourServe" toPeer:playerName];
 }
 
 - (void)updateScoreLabels {
@@ -108,15 +116,7 @@
     self.rightScoreLabel.text = @"0";
 }
 
-#pragma mark - MultipeerManagerDelegate methods
-
-- (void)connectedToPeerName:(NSString *)displayName {
-    self.peersLabel.text = displayName;
-}
-
-- (void)disconnectedFromPeerName:(NSString *)displayName {
-    self.peersLabel.text = @"--";
-}
+#pragma mark - MultipeerServerDelegate methods
 
 - (void)leftPlayerScored {
     self.leftScore ++;
@@ -129,7 +129,6 @@
 }
 
 - (void)setupLeftImage:(UIImage *)image {
-
     UIImage * portraitImage = [[UIImage alloc] initWithCGImage: image.CGImage
                                                          scale: 1.0
                                                    orientation: UIImageOrientationRight];
@@ -161,6 +160,52 @@
     [self scoreUpdated];
 }
 
+- (void)didStartDownloadingPhoto {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.photoProgressView.hidden = NO;
+    });
+}
+
+- (void)photoDownloadPercent:(CGFloat)percent {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (percent > 0.99f) {
+            self.photoProgressView.hidden = YES;
+        }
+        self.photoProgressView.progress = percent;
+    });
+}
+
+- (void)leftPlayerConnected {
+    self.leftPlayerConnectionStatusLabel.text = @"Left Player Connected";
+    self.leftPlayerConnectionStatusLabel.textColor = [UIColor greenColor];
+}
+
+- (void)rightPlayerConnected {
+    self.rightPlayerConnectionStatusLabel.text = @"Right Player Connected";
+    self.rightPlayerConnectionStatusLabel.textColor = [UIColor greenColor];
+}
+
+- (void)leftPlayerDisconnected {
+    self.leftPlayerConnectionStatusLabel.text = @"Left Player Disonnected";
+    self.leftPlayerConnectionStatusLabel.textColor = [UIColor redColor];
+}
+
+- (void)rightPlayerDisconnected {
+    self.rightPlayerConnectionStatusLabel.text = @"Right Player Disonnected";
+    self.rightPlayerConnectionStatusLabel.textColor = [UIColor redColor];
+}
+
+- (void)serverConnected {
+    self.serverConnectionStatusLabel.text = @"Server Connected";
+    self.serverConnectionStatusLabel.textColor = [UIColor greenColor];
+}
+
+- (void)serverDisconnected {
+    self.serverConnectionStatusLabel.text = @"Server Disonnected";
+    self.serverConnectionStatusLabel.textColor = [UIColor redColor];
+}
+
+
 #pragma mark - MCBrowserViewControllerDelegate Methods
 
 -(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
@@ -177,9 +222,9 @@
 - (IBAction)endGameTapped:(id)sender {
     [self resetGame];
 }
+
 - (IBAction)reconnectButtonTapped:(id)sender {
     [self showMultipeerBrowser];
 }
-
 
 @end

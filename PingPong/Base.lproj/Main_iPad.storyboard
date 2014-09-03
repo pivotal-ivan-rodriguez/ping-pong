@@ -56,19 +56,24 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connected to peers: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfp-iF-Xh4">
-                                        <rect key="frame" x="12" y="394" width="162" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Left player disconnected" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfp-iF-Xh4">
+                                        <rect key="frame" x="12" y="394" width="174" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rl8-T4-1Ut">
-                                        <rect key="frame" x="182" y="394" width="566" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Right player disconnected" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPr-8A-txP">
+                                        <rect key="frame" x="408" y="394" width="184" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Dfm-9M-V1O">
+                                        <rect key="frame" x="224" y="11" width="321" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -92,18 +97,28 @@
                                     <action selector="reconnectButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dwv-zA-yaL"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Server disconnected" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p44-dW-gXf">
+                                <rect key="frame" x="311" y="75" width="147" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ONo-nu-QKf"/>
                     <connections>
+                        <outlet property="leftPlayerConnectionStatusLabel" destination="vfp-iF-Xh4" id="mWW-Tm-wB3"/>
                         <outlet property="leftPlayerImageView" destination="nxu-VJ-Ipp" id="g0g-qy-AGZ"/>
                         <outlet property="leftScoreLabel" destination="2Od-Sa-60K" id="4qP-oi-gN8"/>
                         <outlet property="leftServingLabel" destination="ZKm-DO-2M8" id="lBZ-VX-lcU"/>
-                        <outlet property="peersLabel" destination="Rl8-T4-1Ut" id="YlU-gx-XkU"/>
+                        <outlet property="photoProgressView" destination="Dfm-9M-V1O" id="R1k-iR-uBv"/>
+                        <outlet property="rightPlayerConnectionStatusLabel" destination="pPr-8A-txP" id="2Hs-7m-fgA"/>
                         <outlet property="rightPlayerImageView" destination="9Vj-Q9-ALG" id="1Yo-59-SbZ"/>
                         <outlet property="rightScoreLabel" destination="gMi-Or-1Ow" id="S7F-Lb-b1A"/>
                         <outlet property="rightServingLabel" destination="0IF-7o-E3K" id="fh3-17-paf"/>
+                        <outlet property="serverConnectionStatusLabel" destination="p44-dW-gXf" id="9MO-wq-Guj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
