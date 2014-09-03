@@ -15,13 +15,14 @@
 		423C0F8219B75D2600BB5A05 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0F8119B75D2600BB5A05 /* AppDelegate.m */; };
 		423C0F8519B75D2600BB5A05 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423C0F8319B75D2600BB5A05 /* Main_iPhone.storyboard */; };
 		423C0F8819B75D2600BB5A05 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423C0F8619B75D2600BB5A05 /* Main_iPad.storyboard */; };
-		423C0F8B19B75D2600BB5A05 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0F8A19B75D2600BB5A05 /* ViewController.m */; };
+		423C0F8B19B75D2600BB5A05 /* ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0F8A19B75D2600BB5A05 /* ServerViewController.m */; };
 		423C0F8D19B75D2600BB5A05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 423C0F8C19B75D2600BB5A05 /* Images.xcassets */; };
 		423C0F9419B75D2600BB5A05 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423C0F9319B75D2600BB5A05 /* XCTest.framework */; };
 		423C0F9519B75D2600BB5A05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423C0F7119B75D2600BB5A05 /* Foundation.framework */; };
 		423C0F9619B75D2600BB5A05 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423C0F7519B75D2600BB5A05 /* UIKit.framework */; };
 		423C0F9E19B75D2600BB5A05 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 423C0F9C19B75D2600BB5A05 /* InfoPlist.strings */; };
 		423C0FA019B75D2600BB5A05 /* PingPongTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0F9F19B75D2600BB5A05 /* PingPongTests.m */; };
+		423C0FAC19B75F7E00BB5A05 /* MultipeerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0FAB19B75F7E00BB5A05 /* MultipeerManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,14 +48,16 @@
 		423C0F8119B75D2600BB5A05 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		423C0F8419B75D2600BB5A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		423C0F8719B75D2600BB5A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		423C0F8919B75D2600BB5A05 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		423C0F8A19B75D2600BB5A05 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		423C0F8919B75D2600BB5A05 /* ServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerViewController.h; sourceTree = "<group>"; };
+		423C0F8A19B75D2600BB5A05 /* ServerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServerViewController.m; sourceTree = "<group>"; };
 		423C0F8C19B75D2600BB5A05 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		423C0F9219B75D2600BB5A05 /* PingPongTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PingPongTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		423C0F9319B75D2600BB5A05 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		423C0F9B19B75D2600BB5A05 /* PingPongTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PingPongTests-Info.plist"; sourceTree = "<group>"; };
 		423C0F9D19B75D2600BB5A05 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		423C0F9F19B75D2600BB5A05 /* PingPongTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PingPongTests.m; sourceTree = "<group>"; };
+		423C0FAA19B75F7E00BB5A05 /* MultipeerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipeerManager.h; sourceTree = "<group>"; };
+		423C0FAB19B75F7E00BB5A05 /* MultipeerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipeerManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,12 +117,13 @@
 		423C0F7719B75D2600BB5A05 /* PingPong */ = {
 			isa = PBXGroup;
 			children = (
+				423C0FA919B75F7100BB5A05 /* Helpers */,
 				423C0F8019B75D2600BB5A05 /* AppDelegate.h */,
 				423C0F8119B75D2600BB5A05 /* AppDelegate.m */,
 				423C0F8319B75D2600BB5A05 /* Main_iPhone.storyboard */,
 				423C0F8619B75D2600BB5A05 /* Main_iPad.storyboard */,
-				423C0F8919B75D2600BB5A05 /* ViewController.h */,
-				423C0F8A19B75D2600BB5A05 /* ViewController.m */,
+				423C0F8919B75D2600BB5A05 /* ServerViewController.h */,
+				423C0F8A19B75D2600BB5A05 /* ServerViewController.m */,
 				423C0F8C19B75D2600BB5A05 /* Images.xcassets */,
 				423C0F7819B75D2600BB5A05 /* Supporting Files */,
 			);
@@ -153,6 +157,15 @@
 				423C0F9C19B75D2600BB5A05 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		423C0FA919B75F7100BB5A05 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				423C0FAA19B75F7E00BB5A05 /* MultipeerManager.h */,
+				423C0FAB19B75F7E00BB5A05 /* MultipeerManager.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,9 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				423C0F8B19B75D2600BB5A05 /* ViewController.m in Sources */,
+				423C0F8B19B75D2600BB5A05 /* ServerViewController.m in Sources */,
 				423C0F8219B75D2600BB5A05 /* AppDelegate.m in Sources */,
 				423C0F7E19B75D2600BB5A05 /* main.m in Sources */,
+				423C0FAC19B75F7E00BB5A05 /* MultipeerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
