@@ -95,11 +95,23 @@ static NSString * const kServerServiceType = @"pingpong";
             } else if ([peerID.displayName isEqualToString:@"Right"]) {
                 [self.serverDelegate rightPlayerScored];
             }
+        } else if ([dataString isEqualToString:@"reset"]) {
+            [self.serverDelegate clientTriggeredReset];
 
         } else if ([dataString isEqualToString:@"win"]) {
             [self.clientDelegate playerDidWin];
         } else if ([dataString isEqualToString:@"lose"]) {
             [self.clientDelegate playerDidLose];
+        } else if ([dataString isEqualToString:@"11"]) {
+            [self.serverDelegate setupGameWithPointsToWin:11];
+        } else if ([dataString isEqualToString:@"21"]) {
+            [self.serverDelegate setupGameWithPointsToWin:21];
+        } else if ([dataString isEqualToString:@"-1"]) {
+            if ([peerID.displayName isEqualToString:@"Left"]) {
+                [self.serverDelegate minusOneToLeftScore];
+            } else if ([peerID.displayName isEqualToString:@"Right"]) {
+                [self.serverDelegate minusOneToRightScore];
+            }
         }
     });
 }

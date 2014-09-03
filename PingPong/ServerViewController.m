@@ -23,6 +23,8 @@
 @property (nonatomic) NSInteger leftScore;
 @property (nonatomic) NSInteger rightScore;
 
+@property (nonatomic) NSInteger pointsToWin;
+
 @end
 
 @implementation ServerViewController
@@ -54,11 +56,11 @@
 }
 
 - (BOOL)leftPlayerWon {
-    return (self.leftScore == 21);
+    return (self.leftScore >= self.pointsToWin);
 }
 
 - (BOOL)rightPlayerWon {
-    return (self.rightScore == 21);
+    return (self.rightScore >= self.pointsToWin);
 }
 
 #pragma mark - UI updating helpers
@@ -139,6 +141,24 @@
                                                          scale: 1.0
                                                    orientation: UIImageOrientationRight];
     self.rightPlayerImageView.image = portraitImage;
+}
+
+- (void)clientTriggeredReset {
+    [self resetGame];
+}
+
+- (void)setupGameWithPointsToWin:(NSInteger)pointsToWin {
+    self.pointsToWin = pointsToWin;
+}
+
+- (void)minusOneToLeftScore {
+    self.leftScore--;
+    [self scoreUpdated];
+}
+
+- (void)minusOneToRightScore {
+    self.rightScore--;
+    [self scoreUpdated];
 }
 
 #pragma mark - MCBrowserViewControllerDelegate Methods

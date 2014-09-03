@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qf2-qL-5mf">
-                                <rect key="frame" x="20" y="268" width="280" height="242"/>
+                                <rect key="frame" x="20" y="191" width="280" height="346"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.25098040699958801" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="50"/>
@@ -28,30 +28,8 @@
                                     <action selector="scoreButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="n5Q-8U-q5J"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URc-Ys-wyF">
-                                <rect key="frame" x="3" y="68" width="74" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Left Player">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="setupAsLeftPlayer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1jH-CJ-gVO"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cY2-Tv-gzF">
-                                <rect key="frame" x="237" y="68" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Right Player">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="setupAsRightPlayer:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="IDU-j6-GTd"/>
-                                </connections>
-                            </button>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yar-Ch-eJS">
-                                <rect key="frame" x="86" y="68" width="150" height="165"/>
+                                <rect key="frame" x="20" y="75" width="94" height="103"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.72941176470000002" green="0.72941176470000002" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
@@ -59,10 +37,10 @@
                                     <outletCollection property="gestureRecognizers" destination="XaR-Gx-oXM" appends="YES" id="Esh-y7-KSZ"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap to add image" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iu1-Xc-Dt8">
-                                <rect key="frame" x="94" y="115" width="134" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap to add image" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="94" translatesAutoresizingMaskIntoConstraints="NO" id="iu1-Xc-Dt8">
+                                <rect key="frame" x="20" y="82" width="94" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -73,28 +51,64 @@
                                 <color key="textColor" red="0.91764705879999997" green="0.2901960784" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZU-Ye-0cv">
-                                <rect key="frame" x="176" y="530" width="124" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7w5-LB-mzq">
+                                <rect key="frame" x="118" y="148" width="182" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.91764705879999997" green="0.2901960784" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
-                                <state key="normal" title="Restart Game">
+                                <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Change starting server">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="resetGameButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WNG-xQ-aiJ"/>
-                                </connections>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IoW-Ax-5dN">
+                                <rect key="frame" x="118" y="75" width="182" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="11"/>
+                                    <segment title="21"/>
+                                </segments>
+                                <connections>
+                                    <action selector="gameSegmentedChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="uLC-t5-eNe"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dzC-he-wJe">
+                                <rect key="frame" x="118" y="111" width="182" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Left Player"/>
+                                    <segment title="Right Player"/>
+                                </segments>
+                                <connections>
+                                    <action selector="playerSegmentedChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="J8E-Q2-RuN"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hLJ-as-F6l"/>
+                    <navigationItem key="navigationItem" id="hLJ-as-F6l">
+                        <barButtonItem key="leftBarButtonItem" title="Reset Game" id="hLO-xd-ASc">
+                            <color key="tintColor" red="1" green="0.28922081360000002" blue="0.30225426750000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="resetGameButtonTapped:" destination="vXZ-lx-hvc" id="RYF-fH-SHk"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="-1 Point" id="Nm1-h3-QiU">
+                            <connections>
+                                <action selector="minusOnePoint:" destination="vXZ-lx-hvc" id="Be3-eT-w3Z"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addProfileImageLabel" destination="iu1-Xc-Dt8" id="0ZQ-v9-awh"/>
                         <outlet property="connectionStateLabel" destination="Y6f-E4-Hee" id="aM9-hQ-dhO"/>
-                        <outlet property="leftPlayerButton" destination="URc-Ys-wyF" id="6Eo-Vp-oHK"/>
+                        <outlet property="gameSegmentedControl" destination="IoW-Ax-5dN" id="rn1-4a-yVQ"/>
+                        <outlet property="playerSegmentedControl" destination="dzC-he-wJe" id="xic-yb-RL1"/>
                         <outlet property="profilePicture" destination="yar-Ch-eJS" id="5Iz-AZ-nUg"/>
-                        <outlet property="rightPlayerButton" destination="cY2-Tv-gzF" id="ZqM-2O-Z3F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

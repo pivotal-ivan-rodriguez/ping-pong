@@ -16,6 +16,10 @@
 - (void)rightPlayerScored;
 - (void)setupLeftImage:(UIImage *)image;
 - (void)setupRightImage:(UIImage *)image;
+- (void)clientTriggeredReset;
+- (void)setupGameWithPointsToWin:(NSInteger)pointsToWin;
+- (void)minusOneToLeftScore;
+- (void)minusOneToRightScore;
 
 @end
 

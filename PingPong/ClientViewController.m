@@ -11,8 +11,8 @@
 
 @interface ClientViewController () <MultipeerClientDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *leftPlayerButton;
-@property (weak, nonatomic) IBOutlet UIButton *rightPlayerButton;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gameSegmentedControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *playerSegmentedControl;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *addProfileImageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *connectionStateLabel;
@@ -60,17 +60,6 @@
     [[MultipeerManager sharedInstance] sendMessage:@"point" toPeer:@"Server"];
 }
 
-- (IBAction)setupAsLeftPlayer:(id)sender {
-    [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:@"Left"];
-    [[MultipeerManager sharedInstance] advertiseSelf:YES];
-    self.rightPlayerButton.hidden = YES;
-}
-
-- (IBAction)setupAsRightPlayer:(id)sender {
-    [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:@"Right"];
-    [[MultipeerManager sharedInstance] advertiseSelf:YES];
-    self.leftPlayerButton.hidden = YES;
-}
 
 - (IBAction)addPhotoButtonTapped:(id)sender {
     UIImagePickerController *imagePickerController = [UIImagePickerController new];
@@ -80,7 +69,31 @@
     [self presentViewController:imagePickerController animated:NO completion:nil];
 }
 
-- (IBAction)resetGameButtonTapped:(UIButton *)sender {
+- (IBAction)resetGameButtonTapped:(UIBarButtonItem *)sender {
+    [[MultipeerManager sharedInstance] sendMessage:@"reset" toPeer:@"Server"];
+}
+
+- (IBAction)gameSegmentedChanged:(UISegmentedControl *)sender {
+    NSInteger pointsToWin = -1;
+    if (sender.selectedSegmentIndex == 0) {
+        pointsToWin = 11;
+    } else if (sender.selectedSegmentIndex == 1) {
+        pointsToWin = 21;
+    }
+
+    [self setupGameWithPointsToWin:@(pointsToWin)];
+}
+
+- (IBAction)playerSegmentedChanged:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == 0) {
+        [self setupAsLeftPlayer];
+    } else if (sender.selectedSegmentIndex == 1) {
+        [self setupAsRightPlayer];
+    }
+}
+
+- (IBAction)minusOnePoint:(UIBarButtonItem *)sender {
+    [[MultipeerManager sharedInstance] sendMessage:@"-1" toPeer:@"Server"];
 }
 
 #pragma mark - UIImagePickerControllerDelegate Methods
@@ -104,12 +117,27 @@
             self.profilePicture.image = image;
             self.addProfileImageLabel.hidden = YES;
         });
-
     });
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Private Methods
+
+- (void)setupGameWithPointsToWin:(NSNumber *)pointsToWin {
+    [[MultipeerManager sharedInstance] sendMessage:[pointsToWin stringValue] toPeer:@"Server"];
+}
+
+- (void)setupAsLeftPlayer {
+    [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:@"Left"];
+    [[MultipeerManager sharedInstance] advertiseSelf:YES];
+}
+
+- (void)setupAsRightPlayer {
+    [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:@"Right"];
+    [[MultipeerManager sharedInstance] advertiseSelf:YES];
 }
 
 @end
