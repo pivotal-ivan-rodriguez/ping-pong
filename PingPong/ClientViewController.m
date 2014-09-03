@@ -73,7 +73,7 @@
 #pragma mark - IBActions
 
 - (IBAction)scoreButtonTapped:(UIButton *)sender {
-    [[MultipeerManager sharedInstance] sendMessage:@"point" toPeer:@"Server"];
+    [[MultipeerManager sharedInstance] sendMessage:kPointMessage toPeer:kServerKey];
 }
 
 
@@ -86,7 +86,7 @@
 }
 
 - (IBAction)resetGameButtonTapped:(UIBarButtonItem *)sender {
-    [[MultipeerManager sharedInstance] sendMessage:@"reset" toPeer:@"Server"];
+    [[MultipeerManager sharedInstance] sendMessage:kResetMessage toPeer:kServerKey];
 }
 
 - (IBAction)gameSegmentedChanged:(UISegmentedControl *)sender {
@@ -109,7 +109,7 @@
 }
 
 - (IBAction)minusOnePoint:(UIBarButtonItem *)sender {
-    [[MultipeerManager sharedInstance] sendMessage:@"-1" toPeer:@"Server"];
+    [[MultipeerManager sharedInstance] sendMessage:kMinusOneMessage toPeer:kServerKey];
 }
 
 #pragma mark - UIImagePickerControllerDelegate Methods
@@ -125,7 +125,7 @@
         NSData *imageData = UIImagePNGRepresentation(image);
         [imageData writeToFile:savedImagePath atomically:NO];
 
-        [[MultipeerManager sharedInstance] sendResourcePath:savedImagePath toPeer:@"Server"];
+        [[MultipeerManager sharedInstance] sendResourcePath:savedImagePath toPeer:kServerKey];
 
         dispatch_async(dispatch_get_main_queue(), ^{
             self.profilePicture.image = image;
@@ -141,26 +141,26 @@
 #pragma mark - Private Methods
 
 - (void)setupGameWithPointsToWin:(NSNumber *)pointsToWin {
-    [[MultipeerManager sharedInstance] sendMessage:[pointsToWin stringValue] toPeer:@"Server"];
+    [[MultipeerManager sharedInstance] sendMessage:[pointsToWin stringValue] toPeer:kServerKey];
 }
 
 - (void)setupAsLeftPlayer {
     [[MultipeerManager sharedInstance] advertiseSelf:NO];
 
-    [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:@"Left"];
+    [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:kLeftPlayerKey];
     [[MultipeerManager sharedInstance] advertiseSelf:YES];
 }
 
 - (void)setupAsRightPlayer {
     [[MultipeerManager sharedInstance] advertiseSelf:NO];
 
-    [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:@"Right"];
+    [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:kRightPlayerKey];
     [[MultipeerManager sharedInstance] advertiseSelf:YES];
 }
 
 - (void)initialSetup {
     [self setupGameWithPointsToWin:@(11)];
-    [[MultipeerManager sharedInstance] sendResourcePath:[self imagePath] toPeer:@"Server"];
+    [[MultipeerManager sharedInstance] sendResourcePath:[self imagePath] toPeer:kServerKey];
 }
 
 - (NSString *)imagePath {

@@ -36,7 +36,7 @@
     [super viewDidLoad];
 
     [MultipeerManager sharedInstance].serverDelegate = self;
-    [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:@"Server"];
+    [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:kServerKey];
     [[MultipeerManager sharedInstance] advertiseSelf:YES];
     [self showMultipeerBrowser];
 
@@ -76,24 +76,25 @@
     NSString *winnerName;
     NSString *loserName;
     if ([self leftPlayerWon]) {
-        winnerName = @"Left";
-        loserName = @"Right";
+        winnerName = kLeftPlayerKey;
+        loserName = kRightPlayerKey;
+
     } else if ([self rightPlayerWon]) {
-        winnerName = @"Right";
-        loserName = @"Left";
+        winnerName = kRightPlayerKey;
+        loserName = kLeftPlayerKey;
     }
     if (winnerName) {
-        [[MultipeerManager sharedInstance] sendMessage:@"win" toPeer:winnerName];
-        [[MultipeerManager sharedInstance] sendMessage:@"lose" toPeer:loserName];
+        [[MultipeerManager sharedInstance] sendMessage:kWinMessage toPeer:winnerName];
+        [[MultipeerManager sharedInstance] sendMessage:kLoseMessage toPeer:loserName];
     }
 }
 
 - (void)informClientOfServer {
     BOOL isLeftPlayerServing = self.leftServingLabel.hidden == NO;
 
-    NSString *playerName = isLeftPlayerServing ? @"Left" : @"Right";
+    NSString *playerName = isLeftPlayerServing ? kLeftPlayerKey : kRightPlayerKey;
 
-    [[MultipeerManager sharedInstance] sendMessage:@"yourServe" toPeer:playerName];
+    [[MultipeerManager sharedInstance] sendMessage:kYourServeMessage toPeer:playerName];
 }
 
 - (void)updateScoreLabels {
@@ -176,32 +177,32 @@
 }
 
 - (void)leftPlayerConnected {
-    self.leftPlayerConnectionStatusLabel.text = @"Left Player Connected";
+    self.leftPlayerConnectionStatusLabel.text = [NSString stringWithFormat:@"%@ Player Connected",kLeftPlayerKey];
     self.leftPlayerConnectionStatusLabel.textColor = [UIColor greenColor];
 }
 
 - (void)rightPlayerConnected {
-    self.rightPlayerConnectionStatusLabel.text = @"Right Player Connected";
+    self.rightPlayerConnectionStatusLabel.text = [NSString stringWithFormat:@"%@ Player Connected",kRightPlayerKey];
     self.rightPlayerConnectionStatusLabel.textColor = [UIColor greenColor];
 }
 
 - (void)leftPlayerDisconnected {
-    self.leftPlayerConnectionStatusLabel.text = @"Left Player Disonnected";
+    self.leftPlayerConnectionStatusLabel.text = [NSString stringWithFormat:@"%@ Player Disonnected",kLeftPlayerKey];
     self.leftPlayerConnectionStatusLabel.textColor = [UIColor redColor];
 }
 
 - (void)rightPlayerDisconnected {
-    self.rightPlayerConnectionStatusLabel.text = @"Right Player Disonnected";
+    self.rightPlayerConnectionStatusLabel.text = [NSString stringWithFormat:@"%@ Player Disonnected",kRightPlayerKey];
     self.rightPlayerConnectionStatusLabel.textColor = [UIColor redColor];
 }
 
 - (void)serverConnected {
-    self.serverConnectionStatusLabel.text = @"Server Connected";
+    self.serverConnectionStatusLabel.text = [NSString stringWithFormat:@"%@ Connected",kServerKey];
     self.serverConnectionStatusLabel.textColor = [UIColor greenColor];
 }
 
 - (void)serverDisconnected {
-    self.serverConnectionStatusLabel.text = @"Server Disonnected";
+    self.serverConnectionStatusLabel.text = [NSString stringWithFormat:@"%@ Disonnected",kServerKey];
     self.serverConnectionStatusLabel.textColor = [UIColor redColor];
 }
 

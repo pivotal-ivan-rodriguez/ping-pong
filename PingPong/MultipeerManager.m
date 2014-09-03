@@ -9,8 +9,6 @@
 #import "MultipeerManager.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 
-static NSString * const kServerServiceType = @"pingpong";
-
 @interface MultipeerManager () <MCSessionDelegate>
 
 @property (nonatomic, strong) MCPeerID *peerID;
@@ -79,23 +77,23 @@ static NSString * const kServerServiceType = @"pingpong";
 
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state{
     if (state == MCSessionStateConnected) {
-        if ([peerID.displayName isEqualToString:@"Left"]) {
+        if ([peerID.displayName isEqualToString:kLeftPlayerKey]) {
             [self.serverDelegate leftPlayerConnected];
             [self.clientDelegate hasConnected];
-        } else if ([peerID.displayName isEqualToString:@"Right"]) {
+        } else if ([peerID.displayName isEqualToString:kRightPlayerKey]) {
             [self.serverDelegate rightPlayerConnected];
             [self.clientDelegate hasConnected];
-        } else if ([peerID.displayName isEqualToString:@"Server"]) {
+        } else if ([peerID.displayName isEqualToString:kServerKey]) {
             [self.serverDelegate serverConnected];
         }
     } else if (state == MCSessionStateNotConnected) {
-        if ([peerID.displayName isEqualToString:@"Left"]) {
+        if ([peerID.displayName isEqualToString:kLeftPlayerKey]) {
             [self.serverDelegate leftPlayerDisconnected];
             [self.clientDelegate hasDisconnected];
-        } else if ([peerID.displayName isEqualToString:@"Right"]) {
+        } else if ([peerID.displayName isEqualToString:kRightPlayerKey]) {
             [self.serverDelegate rightPlayerDisconnected];
             [self.clientDelegate hasDisconnected];
-        } else if ([peerID.displayName isEqualToString:@"Server"]) {
+        } else if ([peerID.displayName isEqualToString:kServerKey]) {
             [self.serverDelegate serverDisconnected];
         }
     }
@@ -105,35 +103,34 @@ static NSString * const kServerServiceType = @"pingpong";
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID{
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        if ([dataString isEqualToString:@"point"]) {
-            if ([peerID.displayName isEqualToString:@"Left"]) {
+        if ([dataString isEqualToString:kPointMessage]) {
+            if ([peerID.displayName isEqualToString:kLeftPlayerKey]) {
                 [self.serverDelegate leftPlayerScored];
-            } else if ([peerID.displayName isEqualToString:@"Right"]) {
+            } else if ([peerID.displayName isEqualToString:kRightPlayerKey]) {
                 [self.serverDelegate rightPlayerScored];
             }
-        } else if ([dataString isEqualToString:@"reset"]) {
+        } else if ([dataString isEqualToString:kResetMessage]) {
             [self.serverDelegate clientTriggeredReset];
 
-        } else if ([dataString isEqualToString:@"win"]) {
+        } else if ([dataString isEqualToString:kWinMessage]) {
             [self.clientDelegate playerDidWin];
-        } else if ([dataString isEqualToString:@"lose"]) {
+        } else if ([dataString isEqualToString:kLoseMessage]) {
             [self.clientDelegate playerDidLose];
-        } else if ([dataString isEqualToString:@"11"]) {
+        } else if ([dataString isEqualToString:kElevenMessage]) {
             [self.serverDelegate setupGameWithPointsToWin:11];
-        } else if ([dataString isEqualToString:@"21"]) {
+        } else if ([dataString isEqualToString:kTwentyOneMessage]) {
             [self.serverDelegate setupGameWithPointsToWin:21];
-        } else if ([dataString isEqualToString:@"-1"]) {
-            if ([peerID.displayName isEqualToString:@"Left"]) {
+        } else if ([dataString isEqualToString:kMinusOneMessage]) {
+            if ([peerID.displayName isEqualToString:kLeftPlayerKey]) {
                 [self.serverDelegate minusOneToLeftScore];
-            } else if ([peerID.displayName isEqualToString:@"Right"]) {
+            } else if ([peerID.displayName isEqualToString:kRightPlayerKey]) {
                 [self.serverDelegate minusOneToRightScore];
             }
-        } else if ([dataString isEqualToString:@"yourServe"]) {
-            [self.clientDelegate playAudioWithResourceName:@"yourServe"];
+        } else if ([dataString isEqualToString:kYourServeMessage]) {
+            [self.clientDelegate playAudioWithResourceName:kYourServeMessage];
         }
     });
 }
-
 
 - (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress{
     self.progress = progress;
@@ -149,14 +146,13 @@ static NSString * const kServerServiceType = @"pingpong";
 
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:localURL]];
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([peerID.displayName isEqualToString:@"Left"]) {
+        if ([peerID.displayName isEqualToString:kLeftPlayerKey]) {
             [self.serverDelegate setupLeftImage:image];
-        } else if ([peerID.displayName isEqualToString:@"Right"]) {
+        } else if ([peerID.displayName isEqualToString:kRightPlayerKey]) {
             [self.serverDelegate setupRightImage:image];
         }
     });
 }
-
 
 - (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID{
 }

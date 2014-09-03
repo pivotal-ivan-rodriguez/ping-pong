@@ -26,6 +26,7 @@
 		423C0FAF19B7659600BB5A05 /* ClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0FAE19B7659600BB5A05 /* ClientViewController.m */; };
 		42F11AAC19B7AB2E0080C6F5 /* yourServe.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 42F11AAB19B7AB2E0080C6F5 /* yourServe.m4a */; };
 		42F11AAE19B7AE740080C6F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F11AAD19B7AE740080C6F5 /* AVFoundation.framework */; };
+		42F11AB119B7C7200080C6F5 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F11AB019B7C7200080C6F5 /* Constants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		423C0FAE19B7659600BB5A05 /* ClientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientViewController.m; sourceTree = "<group>"; };
 		42F11AAB19B7AB2E0080C6F5 /* yourServe.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = yourServe.m4a; sourceTree = "<group>"; };
 		42F11AAD19B7AE740080C6F5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		42F11AAF19B7C7200080C6F5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		42F11AB019B7C7200080C6F5 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +179,8 @@
 			children = (
 				423C0FAA19B75F7E00BB5A05 /* MultipeerManager.h */,
 				423C0FAB19B75F7E00BB5A05 /* MultipeerManager.m */,
+				42F11AAF19B7C7200080C6F5 /* Constants.h */,
+				42F11AB019B7C7200080C6F5 /* Constants.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 				423C0F7E19B75D2600BB5A05 /* main.m in Sources */,
 				423C0FAC19B75F7E00BB5A05 /* MultipeerManager.m in Sources */,
 				423C0FAF19B7659600BB5A05 /* ClientViewController.m in Sources */,
+				42F11AB119B7C7200080C6F5 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
