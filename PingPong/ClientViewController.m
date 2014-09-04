@@ -24,8 +24,7 @@
 
 @implementation ClientViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     [MultipeerManager sharedInstance].clientDelegate = self;
@@ -78,7 +77,6 @@
 - (IBAction)scoreButtonTapped:(UIButton *)sender {
     [[MultipeerManager sharedInstance] sendMessage:kPointMessage toPeer:kServerKey];
 }
-
 
 - (IBAction)addPhotoButtonTapped:(id)sender {
     UIImagePickerController *imagePickerController = [UIImagePickerController new];

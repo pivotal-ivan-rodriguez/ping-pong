@@ -226,12 +226,11 @@
 
 #pragma mark - MCBrowserViewControllerDelegate Methods
 
--(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
+- (void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
     [browserViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-
--(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
+- (void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
     [browserViewController dismissViewControllerAnimated:YES completion:nil];
 }
 

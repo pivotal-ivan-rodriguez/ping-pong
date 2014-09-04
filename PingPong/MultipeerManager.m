@@ -41,14 +41,12 @@
     return [[MCBrowserViewController alloc] initWithServiceType:kServerServiceType session:_session];
 }
 
--(void)advertiseSelf:(BOOL)shouldAdvertise{
+- (void)advertiseSelf:(BOOL)shouldAdvertise{
     if (shouldAdvertise) {
-        _advertiser = [[MCAdvertiserAssistant alloc] initWithServiceType:kServerServiceType
-                                                           discoveryInfo:nil
-                                                                 session:_session];
+        _advertiser = [[MCAdvertiserAssistant alloc] initWithServiceType:kServerServiceType discoveryInfo:nil session:_session];
         [_advertiser start];
-    }
-    else{
+
+    } else{
         [_advertiser stop];
         _advertiser = nil;
     }
