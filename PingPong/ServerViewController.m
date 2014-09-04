@@ -51,8 +51,6 @@
     self.rightScore = 0;
 
     self.photoProgressView.hidden = YES;
-//    [self startConfettiAnimationInRect:self.leftPlayerImageView.frame win:YES];
-//    [self startConfettiAnimationInRect:self.rightPlayerImageView.frame win:NO];
 }
 
 #pragma mark - Helpers methods
@@ -142,9 +140,19 @@
 - (void)informClientOfServer {
     BOOL isLeftPlayerServing = self.leftServingLabel.hidden == NO;
 
-    NSString *playerName = isLeftPlayerServing ? kLeftPlayerKey : kRightPlayerKey;
+    NSString *playerName;
+    NSString *serveMessage;
+    BOOL isLastServe = [self servesRemainingForServingPlayer]==([self servesPerPlayer] - 1);
 
-    [[MultipeerManager sharedInstance] sendMessage:kYourServeMessage toPeer:playerName];
+    if (isLeftPlayerServing) {
+        playerName = kLeftPlayerKey;
+        serveMessage = isLastServe ? kLastServeLeftKey : kYourServeLeftKey;
+    } else {
+        playerName = kRightPlayerKey;
+        serveMessage = isLastServe ? kLastServeRightKey : kYourServeRightKey;
+    }
+
+    [[MultipeerManager sharedInstance] sendMessage:serveMessage toPeer:playerName];
 }
 
 - (void)updateScoreLabels {
@@ -153,11 +161,17 @@
 }
 
 - (void)updateServingString {
-    NSInteger servesPerPlayer = (self.pointsToWin == 11) ? 2 : 5;
-    BOOL scoreIsMultipleOfServesPerPlayer = ((self.rightScore + self.leftScore)%servesPerPlayer==0);
-    if (scoreIsMultipleOfServesPerPlayer) {
+    if ([self servesRemainingForServingPlayer] == 0) {
         [self toggleServer];
     }
+}
+
+- (NSInteger)servesRemainingForServingPlayer {
+    return (self.rightScore + self.leftScore)%[self servesPerPlayer];
+}
+
+- (NSInteger)servesPerPlayer {
+    return (self.pointsToWin == 11) ? 2 : 5;
 }
 
 - (void)resetGame {

@@ -131,11 +131,12 @@
             } else if ([peerID.displayName isEqualToString:kRightPlayerKey]) {
                 [self.serverDelegate minusOneToRightScore];
             }
-        } else if ([dataString isEqualToString:kYourServeMessage]) {
-            [self.clientDelegate playAudioWithResourceName:kYourServeMessage];
+        } else if ([self isAudioDataString:dataString]) {
+            [self.clientDelegate playAudioForAudioName:dataString];
             
         } else if ([dataString isEqualToString:kChangeStartingServerMessage]) {
             [self.serverDelegate changeStartingServer];
+
         } else if ([dataString isEqualToString:kOpponentPointMessage]) {
             if ([peerID.displayName isEqualToString:kLeftPlayerKey]) {
                 [self.serverDelegate rightPlayerScored];
@@ -195,6 +196,14 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     [self.serverDelegate photoDownloadPercent:self.progress.fractionCompleted];
+}
+
+- (BOOL)isAudioDataString:(NSString *)dataString {
+    BOOL isAudio = [dataString isEqualToString:kYourServeLeftKey] ||
+    [dataString isEqualToString:kYourServeRightKey] ||
+    [dataString isEqualToString:kLastServeLeftKey] ||
+    [dataString isEqualToString:kLastServeRightKey];
+    return isAudio;
 }
 
 @end

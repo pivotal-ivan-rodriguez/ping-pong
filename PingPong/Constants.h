@@ -14,6 +14,10 @@
 extern NSString * const kLeftPlayerKey;
 extern NSString * const kRightPlayerKey;
 extern NSString * const kServerKey;
+extern NSString * const kYourServeLeftKey;
+extern NSString * const kYourServeRightKey;
+extern NSString * const kLastServeLeftKey;
+extern NSString * const kLastServeRightKey;
 
 //Messages
 extern NSString * const kPointMessage;
@@ -24,7 +28,6 @@ extern NSString * const kLoseMessage;
 extern NSString * const kElevenMessage;
 extern NSString * const kTwentyOneMessage;
 extern NSString * const kMinusOneMessage;
-extern NSString * const kYourServeMessage;
 extern NSString * const kChangeStartingServerMessage;
 
 //Multipeer

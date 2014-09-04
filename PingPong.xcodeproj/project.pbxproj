@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4217C0A219B8F01C0067A4B9 /* lastServeLeft.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4217C09E19B8F01C0067A4B9 /* lastServeLeft.mp3 */; };
+		4217C0A319B8F01C0067A4B9 /* lastServeRight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4217C09F19B8F01C0067A4B9 /* lastServeRight.mp3 */; };
+		4217C0A419B8F01C0067A4B9 /* yourServeLeft.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4217C0A019B8F01C0067A4B9 /* yourServeLeft.mp3 */; };
+		4217C0A519B8F01C0067A4B9 /* yourServeRight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4217C0A119B8F01C0067A4B9 /* yourServeRight.mp3 */; };
 		423C0F7219B75D2600BB5A05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423C0F7119B75D2600BB5A05 /* Foundation.framework */; };
 		423C0F7419B75D2600BB5A05 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423C0F7319B75D2600BB5A05 /* CoreGraphics.framework */; };
 		423C0F7619B75D2600BB5A05 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423C0F7519B75D2600BB5A05 /* UIKit.framework */; };
@@ -24,7 +28,6 @@
 		423C0FA019B75D2600BB5A05 /* PingPongTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0F9F19B75D2600BB5A05 /* PingPongTests.m */; };
 		423C0FAC19B75F7E00BB5A05 /* MultipeerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0FAB19B75F7E00BB5A05 /* MultipeerManager.m */; };
 		423C0FAF19B7659600BB5A05 /* ClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0FAE19B7659600BB5A05 /* ClientViewController.m */; };
-		42F11AAC19B7AB2E0080C6F5 /* yourServe.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 42F11AAB19B7AB2E0080C6F5 /* yourServe.m4a */; };
 		42F11AAE19B7AE740080C6F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F11AAD19B7AE740080C6F5 /* AVFoundation.framework */; };
 		42F11AB119B7C7200080C6F5 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F11AB019B7C7200080C6F5 /* Constants.m */; };
 		42F11AB719B8C1DF0080C6F5 /* ConfettiScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F11AB619B8C1DF0080C6F5 /* ConfettiScreen.m */; };
@@ -41,6 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4217C09E19B8F01C0067A4B9 /* lastServeLeft.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = lastServeLeft.mp3; path = Voices/lastServeLeft.mp3; sourceTree = SOURCE_ROOT; };
+		4217C09F19B8F01C0067A4B9 /* lastServeRight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = lastServeRight.mp3; path = Voices/lastServeRight.mp3; sourceTree = SOURCE_ROOT; };
+		4217C0A019B8F01C0067A4B9 /* yourServeLeft.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = yourServeLeft.mp3; path = Voices/yourServeLeft.mp3; sourceTree = SOURCE_ROOT; };
+		4217C0A119B8F01C0067A4B9 /* yourServeRight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = yourServeRight.mp3; path = Voices/yourServeRight.mp3; sourceTree = SOURCE_ROOT; };
 		423C0F6E19B75D2600BB5A05 /* PingPong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PingPong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		423C0F7119B75D2600BB5A05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		423C0F7319B75D2600BB5A05 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -65,7 +72,6 @@
 		423C0FAB19B75F7E00BB5A05 /* MultipeerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipeerManager.m; sourceTree = "<group>"; };
 		423C0FAD19B7659600BB5A05 /* ClientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientViewController.h; sourceTree = "<group>"; };
 		423C0FAE19B7659600BB5A05 /* ClientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientViewController.m; sourceTree = "<group>"; };
-		42F11AAB19B7AB2E0080C6F5 /* yourServe.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = yourServe.m4a; sourceTree = "<group>"; };
 		42F11AAD19B7AE740080C6F5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		42F11AAF19B7C7200080C6F5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		42F11AB019B7C7200080C6F5 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -188,7 +194,10 @@
 		42F11AAA19B7AB2E0080C6F5 /* Voices */ = {
 			isa = PBXGroup;
 			children = (
-				42F11AAB19B7AB2E0080C6F5 /* yourServe.m4a */,
+				4217C09E19B8F01C0067A4B9 /* lastServeLeft.mp3 */,
+				4217C09F19B8F01C0067A4B9 /* lastServeRight.mp3 */,
+				4217C0A019B8F01C0067A4B9 /* yourServeLeft.mp3 */,
+				4217C0A119B8F01C0067A4B9 /* yourServeRight.mp3 */,
 			);
 			path = Voices;
 			sourceTree = "<group>";
@@ -307,9 +316,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				423C0F8819B75D2600BB5A05 /* Main_iPad.storyboard in Resources */,
-				42F11AAC19B7AB2E0080C6F5 /* yourServe.m4a in Resources */,
 				423C0F8D19B75D2600BB5A05 /* Images.xcassets in Resources */,
+				4217C0A519B8F01C0067A4B9 /* yourServeRight.mp3 in Resources */,
 				423C0F8519B75D2600BB5A05 /* Main_iPhone.storyboard in Resources */,
+				4217C0A419B8F01C0067A4B9 /* yourServeLeft.mp3 in Resources */,
+				4217C0A319B8F01C0067A4B9 /* lastServeRight.mp3 in Resources */,
+				4217C0A219B8F01C0067A4B9 /* lastServeLeft.mp3 in Resources */,
 				423C0F7C19B75D2600BB5A05 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

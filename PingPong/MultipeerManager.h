@@ -32,12 +32,11 @@
 
 @protocol MultipeerClientDelegate <NSObject>
 
-
 - (void)hasConnected;
 - (void)hasDisconnected;
 - (void)playerDidWin;
 - (void)playerDidLose;
-- (void)playAudioWithResourceName:(NSString *)name;
+- (void)playAudioForAudioName:(NSString *)audioName;
 - (void)setupGameWithPointsToWin:(NSInteger)pointsToWin;
 - (void)triggeredReset;
 

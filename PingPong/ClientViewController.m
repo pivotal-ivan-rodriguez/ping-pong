@@ -32,8 +32,6 @@
 
     [MultipeerManager sharedInstance].clientDelegate = self;
     [self setupAsLeftPlayer];
-
-//    [self startConfettiAnimationInRect:self.view.bounds win:NO];
 }
 
 #pragma mark - MultipeerManagerDelegate methods
@@ -56,8 +54,8 @@
     [self startConfettiAnimationInRect:self.view.bounds win:NO];
 }
 
-- (void)playAudioWithResourceName:(NSString *)name {
-    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"m4a"];
+- (void)playAudioForAudioName:(NSString *)audioName {
+    NSString *path = [[NSBundle mainBundle] pathForResource:audioName ofType:@"mp3"];
     NSError *error;
     AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] error:&error];
     self.player = player;

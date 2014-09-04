@@ -14,6 +14,10 @@
 NSString * const kLeftPlayerKey = @"Left";
 NSString * const kRightPlayerKey = @"Right";
 NSString * const kServerKey = @"Server";
+NSString * const kYourServeLeftKey = @"yourServeLeft";
+NSString * const kYourServeRightKey = @"yourServeRight";
+NSString * const kLastServeLeftKey = @"lastServeLeft";
+NSString * const kLastServeRightKey = @"lastServeRight";
 
 //Messages
 NSString * const kPointMessage = @"point";
@@ -25,7 +29,6 @@ NSString * const kElevenMessage = @"11";
 NSString * const kTwentyOneMessage = @"21";
 NSString * const kMinusOneMessage = @"-1";
 NSString * const kChangeStartingServerMessage = @"changeServer";
-NSString * const kYourServeMessage = @"yourServe";
 
 //Multipeer
 NSString * const kServerServiceType = @"pingpong";
