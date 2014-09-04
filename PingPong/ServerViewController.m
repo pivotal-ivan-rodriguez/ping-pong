@@ -168,12 +168,16 @@
 }
 
 - (BOOL)isGameOver {
+    CGRect leftFrame = CGRectMake(0.0f, 0.0f, 384.0f, 50.0f);
+    CGRect rightFrame = CGRectMake(CGRectGetWidth(self.view.bounds)-384.0f, 0.0f, 384.0f, 50.0f);
+
+    //TODO: refactor
     if ([self leftPlayerWon]) {
-        [self startConfettiAnimationInRect:self.leftPlayerImageView.frame win:YES];
-        [self startConfettiAnimationInRect:self.rightPlayerImageView.frame win:NO];
+        [self startConfettiAnimationInRect:leftFrame win:YES];
+        [self startConfettiAnimationInRect:rightFrame win:NO];
     } else if ([self rightPlayerWon]) {
-        [self startConfettiAnimationInRect:self.rightPlayerImageView.frame win:YES];
-        [self startConfettiAnimationInRect:self.leftPlayerImageView.frame win:NO];
+        [self startConfettiAnimationInRect:rightFrame win:YES];
+        [self startConfettiAnimationInRect:leftFrame win:NO];
     }
     return [self leftPlayerWon] || [self rightPlayerWon];
 }
