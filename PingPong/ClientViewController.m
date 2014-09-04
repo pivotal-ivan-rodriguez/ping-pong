@@ -48,10 +48,12 @@
 
 - (void)playerDidWin {
     [self startConfettiAnimationInRect:self.view.bounds win:YES];
+    [self playAudioForAudioName:@"win"];
 }
 
 - (void)playerDidLose {
     [self startConfettiAnimationInRect:self.view.bounds win:NO];
+    [self playAudioForAudioName:@"lose"];
 }
 
 - (void)playAudioForAudioName:(NSString *)audioName {
