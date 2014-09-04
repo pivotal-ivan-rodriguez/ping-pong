@@ -136,6 +136,13 @@
             
         } else if ([dataString isEqualToString:kChangeStartingServerMessage]) {
             [self.serverDelegate changeStartingServer];
+        } else if ([dataString isEqualToString:kOpponentPointMessage]) {
+            if ([peerID.displayName isEqualToString:kLeftPlayerKey]) {
+                [self.serverDelegate rightPlayerScored];
+
+            } else if ([peerID.displayName isEqualToString:kRightPlayerKey]) {
+                [self.serverDelegate leftPlayerScored];
+            }
         }
     });
 }

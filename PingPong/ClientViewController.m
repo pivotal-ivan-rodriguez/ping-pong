@@ -112,6 +112,10 @@
     }
 }
 
+- (IBAction)opponentScoredButtonTapped:(id)sender {
+    [[MultipeerManager sharedInstance] sendMessage:kOpponentPointMessage toPeer:kServerKey];
+}
+
 - (IBAction)minusOnePoint:(UIBarButtonItem *)sender {
     [[MultipeerManager sharedInstance] sendMessage:kMinusOneMessage toPeer:kServerKey];
 }
@@ -157,7 +161,7 @@
     [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:kLeftPlayerKey];
     [[MultipeerManager sharedInstance] advertiseSelf:YES];
 
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor colorWithRed:1 green:103/255.0f blue:105/255.0f alpha:1];
 }
 
 - (void)setupAsRightPlayer {
@@ -166,7 +170,7 @@
     [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:kRightPlayerKey];
     [[MultipeerManager sharedInstance] advertiseSelf:YES];
     
-    self.view.backgroundColor = [UIColor blueColor];
+    self.view.backgroundColor = [UIColor colorWithRed:108/255.0f green:90/255.0f blue:1 alpha:1];
 }
 
 - (void)initialSetup {

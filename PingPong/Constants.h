@@ -17,6 +17,7 @@ extern NSString * const kServerKey;
 
 //Messages
 extern NSString * const kPointMessage;
+extern NSString * const kOpponentPointMessage;
 extern NSString * const kResetMessage;
 extern NSString * const kWinMessage;
 extern NSString * const kLoseMessage;

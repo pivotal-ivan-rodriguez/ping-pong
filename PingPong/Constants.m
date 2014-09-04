@@ -17,6 +17,7 @@ NSString * const kServerKey = @"Server";
 
 //Messages
 NSString * const kPointMessage = @"point";
+NSString * const kOpponentPointMessage = @"opponentPoint";
 NSString * const kResetMessage = @"reset";
 NSString * const kWinMessage = @"win";
 NSString * const kLoseMessage = @"lose";

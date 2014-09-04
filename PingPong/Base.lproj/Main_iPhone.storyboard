@@ -16,6 +16,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DEr-4r-WhX" userLabel="Confetti View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTe-Bv-bTE" userLabel="Top View">
                                 <rect key="frame" x="23" y="74" width="274" height="103"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -105,16 +110,25 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DEr-4r-WhX" userLabel="Confetti View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DFc-19-NA6">
+                                <rect key="frame" x="204" y="536" width="96" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
+                                <state key="normal" title="Opponent scored">
+                                    <color key="titleColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="opponentScoredButtonTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0vM-w9-sqL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Y6f-E4-Hee" secondAttribute="bottom" constant="8" id="1hd-OE-6rz"/>
                             <constraint firstAttribute="trailing" secondItem="Y6f-E4-Hee" secondAttribute="trailing" constant="20" id="BJl-le-2ru"/>
+                            <constraint firstAttribute="trailing" secondItem="DFc-19-NA6" secondAttribute="trailing" constant="20" id="Hbj-P1-deS"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="DFc-19-NA6" secondAttribute="bottom" constant="4" id="Tdh-Ln-uqY"/>
                             <constraint firstAttribute="trailing" secondItem="DEr-4r-WhX" secondAttribute="trailing" id="YwA-ty-e0p"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="DEr-4r-WhX" secondAttribute="bottom" id="dSS-jr-B21"/>
                             <constraint firstItem="Y6f-E4-Hee" firstAttribute="top" secondItem="Qf2-qL-5mf" secondAttribute="bottom" constant="2" id="dTW-Ss-hne"/>
