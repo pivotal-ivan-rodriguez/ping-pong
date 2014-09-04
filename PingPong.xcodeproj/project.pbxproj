@@ -27,6 +27,7 @@
 		42F11AAC19B7AB2E0080C6F5 /* yourServe.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 42F11AAB19B7AB2E0080C6F5 /* yourServe.m4a */; };
 		42F11AAE19B7AE740080C6F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F11AAD19B7AE740080C6F5 /* AVFoundation.framework */; };
 		42F11AB119B7C7200080C6F5 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F11AB019B7C7200080C6F5 /* Constants.m */; };
+		42F11AB719B8C1DF0080C6F5 /* ConfettiScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F11AB619B8C1DF0080C6F5 /* ConfettiScreen.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		42F11AAD19B7AE740080C6F5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		42F11AAF19B7C7200080C6F5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		42F11AB019B7C7200080C6F5 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		42F11AB519B8C1DF0080C6F5 /* ConfettiScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfettiScreen.h; sourceTree = "<group>"; };
+		42F11AB619B8C1DF0080C6F5 /* ConfettiScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfettiScreen.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,16 +132,13 @@
 		423C0F7719B75D2600BB5A05 /* PingPong */ = {
 			isa = PBXGroup;
 			children = (
+				42F11ABA19B8C2430080C6F5 /* Models */,
+				42F11AB919B8C23E0080C6F5 /* Views */,
+				42F11AB819B8C2340080C6F5 /* Controllers */,
 				42F11AAA19B7AB2E0080C6F5 /* Voices */,
 				423C0FA919B75F7100BB5A05 /* Helpers */,
 				423C0F8019B75D2600BB5A05 /* AppDelegate.h */,
 				423C0F8119B75D2600BB5A05 /* AppDelegate.m */,
-				423C0F8319B75D2600BB5A05 /* Main_iPhone.storyboard */,
-				423C0F8619B75D2600BB5A05 /* Main_iPad.storyboard */,
-				423C0F8919B75D2600BB5A05 /* ServerViewController.h */,
-				423C0F8A19B75D2600BB5A05 /* ServerViewController.m */,
-				423C0FAD19B7659600BB5A05 /* ClientViewController.h */,
-				423C0FAE19B7659600BB5A05 /* ClientViewController.m */,
 				423C0F8C19B75D2600BB5A05 /* Images.xcassets */,
 				423C0F7819B75D2600BB5A05 /* Supporting Files */,
 			);
@@ -191,6 +191,43 @@
 				42F11AAB19B7AB2E0080C6F5 /* yourServe.m4a */,
 			);
 			path = Voices;
+			sourceTree = "<group>";
+		};
+		42F11AB219B8C1AF0080C6F5 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				42F11AB519B8C1DF0080C6F5 /* ConfettiScreen.h */,
+				42F11AB619B8C1DF0080C6F5 /* ConfettiScreen.m */,
+			);
+			name = Animations;
+			sourceTree = "<group>";
+		};
+		42F11AB819B8C2340080C6F5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				423C0F8919B75D2600BB5A05 /* ServerViewController.h */,
+				423C0F8A19B75D2600BB5A05 /* ServerViewController.m */,
+				423C0FAD19B7659600BB5A05 /* ClientViewController.h */,
+				423C0FAE19B7659600BB5A05 /* ClientViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		42F11AB919B8C23E0080C6F5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				42F11AB219B8C1AF0080C6F5 /* Animations */,
+				423C0F8319B75D2600BB5A05 /* Main_iPhone.storyboard */,
+				423C0F8619B75D2600BB5A05 /* Main_iPad.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		42F11ABA19B8C2430080C6F5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +331,7 @@
 			files = (
 				423C0F8B19B75D2600BB5A05 /* ServerViewController.m in Sources */,
 				423C0F8219B75D2600BB5A05 /* AppDelegate.m in Sources */,
+				42F11AB719B8C1DF0080C6F5 /* ConfettiScreen.m in Sources */,
 				423C0F7E19B75D2600BB5A05 /* main.m in Sources */,
 				423C0FAC19B75F7E00BB5A05 /* MultipeerManager.m in Sources */,
 				423C0FAF19B7659600BB5A05 /* ClientViewController.m in Sources */,

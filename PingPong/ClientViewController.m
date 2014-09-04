@@ -8,6 +8,7 @@
 
 #import "ClientViewController.h"
 #import "MultipeerManager.h"
+#import "ConfettiScreen.h"
 
 @import AVFoundation;
 
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *addProfileImageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *connectionStateLabel;
 @property (nonatomic, strong) AVAudioPlayer *player;
+@property (nonatomic, weak) ConfettiScreen *confettiScreen;
 
 @end
 
@@ -29,6 +31,8 @@
 
     [MultipeerManager sharedInstance].clientDelegate = self;
     [self setupAsLeftPlayer];
+
+//    [self startConfettiAnimationInRect:self.view.bounds win:NO];
 }
 
 #pragma mark - MultipeerManagerDelegate methods
@@ -46,11 +50,11 @@
 }
 
 - (void)playerDidWin {
-    [[[UIAlertView alloc] initWithTitle:@"You win!" message:@"Yay!!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+    [self startConfettiAnimationInRect:self.view.bounds win:YES];
 }
 
 - (void)playerDidLose {
-    [[[UIAlertView alloc] initWithTitle:@"You lose!" message:@"Boo!!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+    [self startConfettiAnimationInRect:self.view.bounds win:NO];
 }
 
 - (void)playAudioWithResourceName:(NSString *)name {
@@ -72,6 +76,10 @@
     }
 }
 
+- (void)triggeredReset {
+    [self resetGame];
+}
+
 #pragma mark - IBActions
 
 - (IBAction)scoreButtonTapped:(UIButton *)sender {
@@ -87,7 +95,7 @@
 }
 
 - (IBAction)resetGameButtonTapped:(UIBarButtonItem *)sender {
-    [[MultipeerManager sharedInstance] sendMessage:kResetMessage toPeer:kServerKey];
+    [self resetGame];
 }
 
 - (IBAction)gameSegmentedChanged:(UISegmentedControl *)sender {
@@ -176,6 +184,22 @@
         pointsToWin = 21;
     }
     return pointsToWin;
+}
+
+- (void)startConfettiAnimationInRect:(CGRect)rect win:(BOOL)win {
+    ConfettiScreen *confetti = [[ConfettiScreen alloc] initWithFrame:rect win:win];
+    self.confettiScreen = confetti;
+    [self.view addSubview:confetti];
+}
+
+- (void)stopConfettiAnimation {
+    [self.confettiScreen stopEmitting];
+    [self.confettiScreen removeFromSuperview];
+}
+
+- (void)resetGame {
+    [self stopConfettiAnimation];
+    [[MultipeerManager sharedInstance] sendMessage:kResetMessage toPeer:kServerKey];
 }
 
 @end

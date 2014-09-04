@@ -7,8 +7,9 @@
 //
 
 #import "ServerViewController.h"
-#import "MultipeerManager.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import "MultipeerManager.h"
+#import "ConfettiScreen.h"
 
 @interface ServerViewController () <MCBrowserViewControllerDelegate, MultipeerServerDelegate>
 
@@ -25,10 +26,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *rightServingImageView;
 @property (weak, nonatomic) IBOutlet UILabel *pointsToWinLabel;
 
+
 @property (nonatomic) NSInteger leftScore;
 @property (nonatomic) NSInteger rightScore;
 
 @property (nonatomic) NSInteger pointsToWin;
+@property (nonatomic, weak) ConfettiScreen *confettiScreen;
 
 @end
 
@@ -46,6 +49,8 @@
     self.rightScore = 0;
 
     self.photoProgressView.hidden = YES;
+//    [self startConfettiAnimationInRect:self.leftPlayerImageView.frame win:YES];
+//    [self startConfettiAnimationInRect:self.rightPlayerImageView.frame win:NO];
 }
 
 #pragma mark - Helpers methods
@@ -83,6 +88,17 @@
     self.rightServingImageView.hidden = !self.rightServingImageView.hidden;
 }
 
+- (void)startConfettiAnimationInRect:(CGRect)rect win:(BOOL)win {
+    ConfettiScreen *confetti = [[ConfettiScreen alloc] initWithFrame:rect win:win];
+    self.confettiScreen = confetti;
+    [self.view addSubview:confetti];
+}
+
+- (void)stopConfettiAnimation {
+    [self.confettiScreen stopEmitting];
+    [self.confettiScreen removeFromSuperview];
+}
+
 #pragma mark - UI updating helpers
 
 - (void)scoreUpdated {
@@ -104,6 +120,13 @@
 }
 
 - (BOOL)isGameOver {
+    if ([self leftPlayerWon]) {
+        [self startConfettiAnimationInRect:self.leftPlayerImageView.frame win:YES];
+        [self startConfettiAnimationInRect:self.rightPlayerImageView.frame win:NO];
+    } else if ([self rightPlayerWon]) {
+        [self startConfettiAnimationInRect:self.rightPlayerImageView.frame win:YES];
+        [self startConfettiAnimationInRect:self.leftPlayerImageView.frame win:NO];
+    }
     return [self leftPlayerWon] || [self rightPlayerWon];
 }
 
@@ -133,6 +156,7 @@
     self.leftScoreLabel.text = @"0";
     self.rightScore = 0;
     self.rightScoreLabel.text = @"0";
+    [self stopConfettiAnimation];
 }
 
 #pragma mark - MultipeerServerDelegate methods
@@ -157,7 +181,7 @@
     self.rightPlayerImageView.image = portraitImage;
 }
 
-- (void)clientTriggeredReset {
+- (void)triggeredReset {
     [self resetGame];
 }
 

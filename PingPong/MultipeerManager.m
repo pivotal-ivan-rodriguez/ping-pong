@@ -107,7 +107,8 @@
                 [self.serverDelegate rightPlayerScored];
             }
         } else if ([dataString isEqualToString:kResetMessage]) {
-            [self.serverDelegate clientTriggeredReset];
+            [self.serverDelegate triggeredReset];
+            [self.clientDelegate triggeredReset];
 
         } else if ([dataString isEqualToString:kWinMessage]) {
             [self.clientDelegate playerDidWin];

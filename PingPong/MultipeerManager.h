@@ -16,7 +16,7 @@
 - (void)rightPlayerScored;
 - (void)setupLeftImage:(UIImage *)image;
 - (void)setupRightImage:(UIImage *)image;
-- (void)clientTriggeredReset;
+- (void)triggeredReset;
 - (void)setupGameWithPointsToWin:(NSInteger)pointsToWin;
 - (void)minusOneToLeftScore;
 - (void)minusOneToRightScore;
@@ -39,6 +39,7 @@
 - (void)playerDidLose;
 - (void)playAudioWithResourceName:(NSString *)name;
 - (void)setupGameWithPointsToWin:(NSInteger)pointsToWin;
+- (void)triggeredReset;
 
 @end
 
