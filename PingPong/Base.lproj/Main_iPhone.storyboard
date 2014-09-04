@@ -60,6 +60,7 @@
                                             <segment title="11"/>
                                             <segment title="21"/>
                                         </segments>
+                                        <color key="tintColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="gameSegmentedChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="uLC-t5-eNe"/>
                                         </connections>
@@ -71,12 +72,13 @@
                                             <segment title="Left Player"/>
                                             <segment title="Right Player"/>
                                         </segments>
+                                        <color key="tintColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="playerSegmentedChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="J8E-Q2-RuN"/>
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="103" id="NYh-ls-jWe"/>
                                 </constraints>
@@ -96,25 +98,34 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disconnected" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6f-E4-Hee">
                                 <rect key="frame" x="20" y="539" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ARz-PS-B0H"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                                <color key="textColor" red="0.91764705879999997" green="0.2901960784" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DEr-4r-WhX" userLabel="Confetti View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Y6f-E4-Hee" secondAttribute="bottom" constant="8" id="1hd-OE-6rz"/>
                             <constraint firstAttribute="trailing" secondItem="Y6f-E4-Hee" secondAttribute="trailing" constant="20" id="BJl-le-2ru"/>
+                            <constraint firstAttribute="trailing" secondItem="DEr-4r-WhX" secondAttribute="trailing" id="YwA-ty-e0p"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="DEr-4r-WhX" secondAttribute="bottom" id="dSS-jr-B21"/>
                             <constraint firstItem="Y6f-E4-Hee" firstAttribute="top" secondItem="Qf2-qL-5mf" secondAttribute="bottom" constant="2" id="dTW-Ss-hne"/>
+                            <constraint firstItem="DEr-4r-WhX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="g2v-dh-KMP"/>
                             <constraint firstItem="Qf2-qL-5mf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="gGu-8G-N6G"/>
                             <constraint firstItem="Y6f-E4-Hee" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="h92-si-tdW"/>
                             <constraint firstAttribute="trailing" secondItem="Qf2-qL-5mf" secondAttribute="trailing" constant="20" id="keG-MW-A8b"/>
                             <constraint firstItem="Qf2-qL-5mf" firstAttribute="top" secondItem="mTe-Bv-bTE" secondAttribute="bottom" constant="14" id="lPP-aI-gA0"/>
                             <constraint firstItem="mTe-Bv-bTE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="23" id="tnR-Zo-67J"/>
                             <constraint firstItem="mTe-Bv-bTE" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="10" id="wrE-L5-DIE"/>
+                            <constraint firstItem="DEr-4r-WhX" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="yTI-3q-c4D"/>
                             <constraint firstAttribute="trailing" secondItem="mTe-Bv-bTE" secondAttribute="trailing" constant="23" id="z7Z-QR-Z39"/>
                         </constraints>
                     </view>
@@ -133,6 +144,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addProfileImageLabel" destination="iu1-Xc-Dt8" id="0ZQ-v9-awh"/>
+                        <outlet property="confettiView" destination="DEr-4r-WhX" id="M4y-lA-6OT"/>
                         <outlet property="connectionStateLabel" destination="Y6f-E4-Hee" id="aM9-hQ-dhO"/>
                         <outlet property="gameSegmentedControl" destination="IoW-Ax-5dN" id="rn1-4a-yVQ"/>
                         <outlet property="playerSegmentedControl" destination="dzC-he-wJe" id="xic-yb-RL1"/>

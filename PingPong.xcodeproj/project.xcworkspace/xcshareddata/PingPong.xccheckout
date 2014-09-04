@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6F15E693-E258-4191-91A2-45CD22E57162</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PingPong</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>898E99A8-64D0-470E-9D86-D21D32CA7EF2</key>
+		<string>https://github.com/pivotallabs-ivan-rodriguez/ping-pong.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PingPong.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>898E99A8-64D0-470E-9D86-D21D32CA7EF2</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/pivotallabs-ivan-rodriguez/ping-pong.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>898E99A8-64D0-470E-9D86-D21D32CA7EF2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>898E99A8-64D0-470E-9D86-D21D32CA7EF2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PingPong</string>
+		</dict>
+	</array>
+</dict>
+</plist>

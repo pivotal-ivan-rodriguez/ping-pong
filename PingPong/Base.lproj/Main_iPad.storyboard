@@ -34,7 +34,7 @@
                                         <rect key="frame" x="12" y="36" width="395" height="276"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="paddle" translatesAutoresizingMaskIntoConstraints="NO" id="VEA-0j-mV7">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bluepaddle" translatesAutoresizingMaskIntoConstraints="NO" id="VEA-0j-mV7">
                                         <rect key="frame" x="379" y="29" width="395" height="276"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -112,6 +112,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyw-cM-G3c" userLabel="confettiView">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -123,6 +128,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="confettiView" destination="fyw-cM-G3c" id="a1m-BG-W0k"/>
                         <outlet property="leftPlayerConnectionStatusLabel" destination="vfp-iF-Xh4" id="mWW-Tm-wB3"/>
                         <outlet property="leftPlayerImageView" destination="nxu-VJ-Ipp" id="g0g-qy-AGZ"/>
                         <outlet property="leftScoreLabel" destination="2Od-Sa-60K" id="4qP-oi-gN8"/>
@@ -158,6 +164,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bluepaddle" width="500" height="365"/>
         <image name="paddle" width="500" height="365"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

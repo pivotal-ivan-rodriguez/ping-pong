@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *connectionStateLabel;
 @property (nonatomic, strong) AVAudioPlayer *player;
 @property (nonatomic, weak) ConfettiScreen *confettiScreen;
+@property (weak, nonatomic) IBOutlet UIView *confettiView;
 
 @end
 
@@ -41,12 +42,10 @@
     [self initialSetup];
 
     self.connectionStateLabel.text = @"Connected";
-    self.connectionStateLabel.textColor = [UIColor greenColor];
 }
 
 - (void)hasDisconnected {
     self.connectionStateLabel.text = @"Disconnected";
-    self.connectionStateLabel.textColor = [UIColor redColor];
 }
 
 - (void)playerDidWin {
@@ -96,6 +95,7 @@
 
 - (IBAction)resetGameButtonTapped:(UIBarButtonItem *)sender {
     [self resetGame];
+    [[MultipeerManager sharedInstance] sendMessage:kResetMessage toPeer:kServerKey];
 }
 
 - (IBAction)gameSegmentedChanged:(UISegmentedControl *)sender {
@@ -156,6 +156,8 @@
 
     [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:kLeftPlayerKey];
     [[MultipeerManager sharedInstance] advertiseSelf:YES];
+
+    self.view.backgroundColor = [UIColor redColor];
 }
 
 - (void)setupAsRightPlayer {
@@ -163,6 +165,8 @@
 
     [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:kRightPlayerKey];
     [[MultipeerManager sharedInstance] advertiseSelf:YES];
+    
+    self.view.backgroundColor = [UIColor blueColor];
 }
 
 - (void)initialSetup {
@@ -189,17 +193,18 @@
 - (void)startConfettiAnimationInRect:(CGRect)rect win:(BOOL)win {
     ConfettiScreen *confetti = [[ConfettiScreen alloc] initWithFrame:rect win:win];
     self.confettiScreen = confetti;
-    [self.view addSubview:confetti];
+    [self.confettiView addSubview:confetti];
 }
 
 - (void)stopConfettiAnimation {
     [self.confettiScreen stopEmitting];
-    [self.confettiScreen removeFromSuperview];
+    for (UIView *view in self.confettiView.subviews) {
+        [view removeFromSuperview];
+    }
 }
 
 - (void)resetGame {
     [self stopConfettiAnimation];
-    [[MultipeerManager sharedInstance] sendMessage:kResetMessage toPeer:kServerKey];
 }
 
 @end

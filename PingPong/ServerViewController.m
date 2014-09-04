@@ -25,13 +25,15 @@
 @property (weak, nonatomic) IBOutlet UIImageView *leftServingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *rightServingImageView;
 @property (weak, nonatomic) IBOutlet UILabel *pointsToWinLabel;
+@property (weak, nonatomic) IBOutlet UIView *confettiView;
 
 
 @property (nonatomic) NSInteger leftScore;
 @property (nonatomic) NSInteger rightScore;
 
 @property (nonatomic) NSInteger pointsToWin;
-@property (nonatomic, weak) ConfettiScreen *confettiScreen;
+@property (nonatomic, weak) ConfettiScreen *winConfettiScreen;
+@property (nonatomic, weak) ConfettiScreen *loseConfettiScreen;
 
 @end
 
@@ -89,14 +91,21 @@
 }
 
 - (void)startConfettiAnimationInRect:(CGRect)rect win:(BOOL)win {
-    ConfettiScreen *confetti = [[ConfettiScreen alloc] initWithFrame:rect win:win];
-    self.confettiScreen = confetti;
-    [self.view addSubview:confetti];
+    ConfettiScreen *confettiScreen = [[ConfettiScreen alloc] initWithFrame:rect win:win];
+    if (win) {
+        self.winConfettiScreen = confettiScreen;
+    } else {
+        self.loseConfettiScreen = confettiScreen;
+    }
+    [self.confettiView addSubview:confettiScreen];
 }
 
 - (void)stopConfettiAnimation {
-    [self.confettiScreen stopEmitting];
-    [self.confettiScreen removeFromSuperview];
+    [self.winConfettiScreen stopEmitting];
+    [self.loseConfettiScreen stopEmitting];
+    for (UIView * view in self.confettiView.subviews) {
+        [view removeFromSuperview];
+    }
 }
 
 #pragma mark - UI updating helpers
@@ -183,6 +192,7 @@
 
 - (void)triggeredReset {
     [self resetGame];
+    [[MultipeerManager sharedInstance] broadcastString:kResetMessage];
 }
 
 - (void)setupGameWithPointsToWin:(NSInteger)pointsToWin {
