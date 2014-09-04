@@ -11,6 +11,8 @@
 #import "MultipeerManager.h"
 #import "ConfettiScreen.h"
 
+@import AVFoundation;
+
 @interface ServerViewController () <MCBrowserViewControllerDelegate, MultipeerServerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *leftPlayerImageView;
@@ -34,6 +36,7 @@
 @property (nonatomic) NSInteger pointsToWin;
 @property (nonatomic, weak) ConfettiScreen *winConfettiScreen;
 @property (nonatomic, weak) ConfettiScreen *loseConfettiScreen;
+@property (nonatomic, strong) AVAudioPlayer *player;
 
 @end
 
@@ -59,21 +62,21 @@
 }
 
 - (BOOL)leftPlayerWon {
-    return (self.leftScore >= self.pointsToWin && [self scoreDeltasGreaterThanOne]);
+    return (self.leftScore >= self.pointsToWin && [self scoreDelta] > 1);
 }
 
 - (BOOL)rightPlayerWon {
-    return (self.rightScore >= self.pointsToWin && [self scoreDeltasGreaterThanOne]);
+    return (self.rightScore >= self.pointsToWin && [self scoreDelta] > 1);
 }
 
-- (BOOL)scoreDeltasGreaterThanOne {
-    NSInteger delta = self.leftScore-self.rightScore;
+- (NSInteger)scoreDelta {
+    NSInteger delta = self.leftScore - self.rightScore;
     if (self.leftScore > self.rightScore) {
-        return delta > 1;
+        return delta;
     } else if (self.leftScore < self.rightScore) {
-        return -delta > 1;
+        return -delta;
     } else {
-        return NO;
+        return 0;
     }
 }
 
@@ -109,16 +112,51 @@
     [self showMultipeerBrowser];
 }
 
+- (void)playAudioForAudioName:(NSString *)audioName {
+    if (!audioName) return;
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:audioName ofType:@"mp3"];
+    NSError *error;
+    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] error:&error];
+    self.player = player;
+    BOOL success = [player prepareToPlay];
+    if (success) {
+        [player play];
+    }
+}
+
 #pragma mark - UI updating helpers
 
 - (void)scoreUpdated {
     [self updateScoreLabels];
     [self updateServingString];
+    [self sayScoreIfNeeded];
     if ([self isGameOver]) {
         [self informClientGameOver];
     } else {
         [self informClientOfServer];
     }
+}
+
+- (void)sayScoreIfNeeded {
+    if (self.leftScore < self.pointsToWin - 1 && self.rightScore < self.pointsToWin - 1) {
+        return;
+    }
+    NSString *audioString;
+    BOOL deuce = ([self isInTieBreakerMode] && self.leftScore == self.rightScore);
+    BOOL advantageLeft = ([self isInTieBreakerMode] && self.leftScore > self.rightScore && [self scoreDelta]==1);
+    BOOL advantageRight = ([self isInTieBreakerMode] && self.rightScore > self.leftScore && [self scoreDelta]==1);
+    if (deuce) {
+        audioString = @"deuce";
+    } else if (advantageLeft) {
+        audioString = @"advantageLeft";
+    } else if (advantageRight) {
+        audioString = @"advantageRight";
+    } else if (![self isGameOver]) {
+        audioString = @"matchPoint";
+    }
+
+    [self playAudioForAudioName:audioString];
 }
 
 - (void)informClientGameOver {
@@ -142,20 +180,30 @@
 
 - (void)informClientOfServer {
     BOOL isLeftPlayerServing = self.leftServingLabel.hidden == NO;
+    NSString *serveMessage = isLeftPlayerServing ? kYourServeLeftKey : kYourServeRightKey;
+    NSString *playerName = isLeftPlayerServing ? kLeftPlayerKey : kRightPlayerKey;
 
-    NSString *playerName;
-    NSString *serveMessage;
+    if ([self isInTieBreakerMode]) {
+        [[MultipeerManager sharedInstance] sendMessage:serveMessage toPeer:playerName];
+        return;
+    }
+
     BOOL isLastServe = [self servesRemainingForServingPlayer]==([self servesPerPlayer] - 1);
-
     if (isLeftPlayerServing) {
-        playerName = kLeftPlayerKey;
         serveMessage = isLastServe ? kLastServeLeftKey : kYourServeLeftKey;
     } else {
-        playerName = kRightPlayerKey;
         serveMessage = isLastServe ? kLastServeRightKey : kYourServeRightKey;
     }
 
     [[MultipeerManager sharedInstance] sendMessage:serveMessage toPeer:playerName];
+}
+
+- (BOOL)isInTieBreakerMode {
+    return (self.leftScore >= [self tieBreakerThreshold] && self.rightScore >= [self tieBreakerThreshold]);
+}
+
+- (NSInteger)tieBreakerThreshold {
+    return self.pointsToWin - 1;
 }
 
 - (void)updateScoreLabels {
@@ -164,7 +212,15 @@
 }
 
 - (void)updateServingString {
-    if ([self servesRemainingForServingPlayer] == 0) {
+    NSInteger threshold = [self pointsToWin] - 1;
+    BOOL bothPlayersAboveThreshold = (self.leftScore >= threshold && self.rightScore >= threshold);
+    if (bothPlayersAboveThreshold) {
+        if (self.pointsToWin == 11) {
+            [self toggleServer];
+        } else if ((self.leftScore + self.rightScore)%2 == 0) {
+            [self toggleServer];
+        }
+    } else if ([self servesRemainingForServingPlayer] == 0) {
         [self toggleServer];
     }
 }

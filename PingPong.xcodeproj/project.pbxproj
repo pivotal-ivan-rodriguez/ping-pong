@@ -30,6 +30,10 @@
 		423C0FAF19B7659600BB5A05 /* ClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 423C0FAE19B7659600BB5A05 /* ClientViewController.m */; };
 		42C6BFC019B8F93A0018645D /* lose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42C6BFBE19B8F93A0018645D /* lose.mp3 */; };
 		42C6BFC119B8F93A0018645D /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42C6BFBF19B8F93A0018645D /* win.mp3 */; };
+		42C6BFC819B9008A0018645D /* advantageRight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42C6BFC419B9008A0018645D /* advantageRight.mp3 */; };
+		42C6BFC919B9008A0018645D /* advantageLeft.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42C6BFC519B9008A0018645D /* advantageLeft.mp3 */; };
+		42C6BFCA19B9008A0018645D /* deuce.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42C6BFC619B9008A0018645D /* deuce.mp3 */; };
+		42C6BFCB19B9008A0018645D /* matchPoint.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42C6BFC719B9008A0018645D /* matchPoint.mp3 */; };
 		42F11AAE19B7AE740080C6F5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F11AAD19B7AE740080C6F5 /* AVFoundation.framework */; };
 		42F11AB119B7C7200080C6F5 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F11AB019B7C7200080C6F5 /* Constants.m */; };
 		42F11AB719B8C1DF0080C6F5 /* ConfettiScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F11AB619B8C1DF0080C6F5 /* ConfettiScreen.m */; };
@@ -76,6 +80,10 @@
 		423C0FAE19B7659600BB5A05 /* ClientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientViewController.m; sourceTree = "<group>"; };
 		42C6BFBE19B8F93A0018645D /* lose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = lose.mp3; path = Voices/lose.mp3; sourceTree = SOURCE_ROOT; };
 		42C6BFBF19B8F93A0018645D /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = win.mp3; path = Voices/win.mp3; sourceTree = SOURCE_ROOT; };
+		42C6BFC419B9008A0018645D /* advantageRight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = advantageRight.mp3; path = Voices/advantageRight.mp3; sourceTree = SOURCE_ROOT; };
+		42C6BFC519B9008A0018645D /* advantageLeft.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = advantageLeft.mp3; path = Voices/advantageLeft.mp3; sourceTree = SOURCE_ROOT; };
+		42C6BFC619B9008A0018645D /* deuce.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = deuce.mp3; path = Voices/deuce.mp3; sourceTree = SOURCE_ROOT; };
+		42C6BFC719B9008A0018645D /* matchPoint.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = matchPoint.mp3; path = Voices/matchPoint.mp3; sourceTree = SOURCE_ROOT; };
 		42F11AAD19B7AE740080C6F5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		42F11AAF19B7C7200080C6F5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		42F11AB019B7C7200080C6F5 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -195,7 +203,7 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		42F11AAA19B7AB2E0080C6F5 /* Voices */ = {
+		42C6BFC219B900770018645D /* Client */ = {
 			isa = PBXGroup;
 			children = (
 				42C6BFBE19B8F93A0018645D /* lose.mp3 */,
@@ -204,6 +212,26 @@
 				4217C09F19B8F01C0067A4B9 /* lastServeRight.mp3 */,
 				4217C0A019B8F01C0067A4B9 /* yourServeLeft.mp3 */,
 				4217C0A119B8F01C0067A4B9 /* yourServeRight.mp3 */,
+			);
+			name = Client;
+			sourceTree = "<group>";
+		};
+		42C6BFC319B9007E0018645D /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				42C6BFC419B9008A0018645D /* advantageRight.mp3 */,
+				42C6BFC519B9008A0018645D /* advantageLeft.mp3 */,
+				42C6BFC619B9008A0018645D /* deuce.mp3 */,
+				42C6BFC719B9008A0018645D /* matchPoint.mp3 */,
+			);
+			name = Server;
+			sourceTree = "<group>";
+		};
+		42F11AAA19B7AB2E0080C6F5 /* Voices */ = {
+			isa = PBXGroup;
+			children = (
+				42C6BFC319B9007E0018645D /* Server */,
+				42C6BFC219B900770018645D /* Client */,
 			);
 			path = Voices;
 			sourceTree = "<group>";
@@ -321,13 +349,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C6BFC919B9008A0018645D /* advantageLeft.mp3 in Resources */,
 				423C0F8819B75D2600BB5A05 /* Main_iPad.storyboard in Resources */,
 				423C0F8D19B75D2600BB5A05 /* Images.xcassets in Resources */,
 				42C6BFC019B8F93A0018645D /* lose.mp3 in Resources */,
+				42C6BFCA19B9008A0018645D /* deuce.mp3 in Resources */,
+				42C6BFCB19B9008A0018645D /* matchPoint.mp3 in Resources */,
 				4217C0A519B8F01C0067A4B9 /* yourServeRight.mp3 in Resources */,
 				423C0F8519B75D2600BB5A05 /* Main_iPhone.storyboard in Resources */,
 				42C6BFC119B8F93A0018645D /* win.mp3 in Resources */,
 				4217C0A419B8F01C0067A4B9 /* yourServeLeft.mp3 in Resources */,
+				42C6BFC819B9008A0018645D /* advantageRight.mp3 in Resources */,
 				4217C0A319B8F01C0067A4B9 /* lastServeRight.mp3 in Resources */,
 				4217C0A219B8F01C0067A4B9 /* lastServeLeft.mp3 in Resources */,
 				423C0F7C19B75D2600BB5A05 /* InfoPlist.strings in Resources */,
@@ -496,7 +528,7 @@
 				INFOPLIST_FILE = "PingPong/PingPong-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "FBDCE989-E9DD-4D21-A1E3-92D888504899";
+				PROVISIONING_PROFILE = "CFB8D54D-B404-4DF3-B9BB-2C01976A5067";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -512,7 +544,7 @@
 				INFOPLIST_FILE = "PingPong/PingPong-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "FBDCE989-E9DD-4D21-A1E3-92D888504899";
+				PROVISIONING_PROFILE = "CFB8D54D-B404-4DF3-B9BB-2C01976A5067";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
