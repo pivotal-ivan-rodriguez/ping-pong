@@ -74,30 +74,33 @@
     }
 }
 
+- (void)toggleServer {
+    self.leftServingLabel.hidden = !self.leftServingLabel.hidden;
+    self.rightServingLabel.hidden = !self.rightServingLabel.hidden;
+}
+
 #pragma mark - UI updating helpers
 
 - (void)scoreUpdated {
     [self updateScoreLabels];
     [self updateServingString];
-    [self informClientIfGameOver];
-    [self informClientOfServer];
+    if ([self isGameOver]) {
+        [self informClientGameOver];
+    } else {
+        [self informClientOfServer];
+    }
 }
 
-- (void)informClientIfGameOver {
-    NSString *winnerName;
-    NSString *loserName;
-    if ([self leftPlayerWon]) {
-        winnerName = kLeftPlayerKey;
-        loserName = kRightPlayerKey;
+- (void)informClientGameOver {
+    NSAssert([self isGameOver], @"Game must be over for this method to be called");
+    NSString *winnerName = [self leftPlayerWon] ? kLeftPlayerKey : kRightPlayerKey;
+    NSString *loserName = [self leftPlayerWon] ? kRightPlayerKey : kLeftPlayerKey;
+    [[MultipeerManager sharedInstance] sendMessage:kWinMessage toPeer:winnerName];
+    [[MultipeerManager sharedInstance] sendMessage:kLoseMessage toPeer:loserName];
+}
 
-    } else if ([self rightPlayerWon]) {
-        winnerName = kRightPlayerKey;
-        loserName = kLeftPlayerKey;
-    }
-    if (winnerName) {
-        [[MultipeerManager sharedInstance] sendMessage:kWinMessage toPeer:winnerName];
-        [[MultipeerManager sharedInstance] sendMessage:kLoseMessage toPeer:loserName];
-    }
+- (BOOL)isGameOver {
+    return [self leftPlayerWon] || [self rightPlayerWon];
 }
 
 - (void)informClientOfServer {
@@ -114,10 +117,10 @@
 }
 
 - (void)updateServingString {
-    BOOL scoreIsMultipleOfFive = ((self.rightScore + self.leftScore)%5==0);
-    if (scoreIsMultipleOfFive) {
-        self.leftServingLabel.hidden = !self.leftServingLabel.hidden;
-        self.rightServingLabel.hidden = !self.rightServingLabel.hidden;
+    NSInteger servesPerPlayer = (self.pointsToWin == 11) ? 2 : 5;
+    BOOL scoreIsMultipleOfServesPerPlayer = ((self.rightScore + self.leftScore)%servesPerPlayer==0);
+    if (scoreIsMultipleOfServesPerPlayer) {
+        [self toggleServer];
     }
 }
 
@@ -219,6 +222,12 @@
 - (void)serverDisconnected {
     self.serverConnectionStatusLabel.text = [NSString stringWithFormat:@"%@ Disonnected",kServerKey];
     self.serverConnectionStatusLabel.textColor = [UIColor redColor];
+}
+
+- (void)changeStartingServer {
+    if (self.leftScore == 0 && self.rightScore == 0) {
+        [self toggleServer];
+    }
 }
 
 

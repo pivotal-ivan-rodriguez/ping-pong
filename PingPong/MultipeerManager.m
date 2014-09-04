@@ -127,6 +127,8 @@
             }
         } else if ([dataString isEqualToString:kYourServeMessage]) {
             [self.clientDelegate playAudioWithResourceName:kYourServeMessage];
+        } else if ([dataString isEqualToString:kChangeStartingServerMessage]) {
+            [self.serverDelegate changeStartingServer];
         }
     });
 }
@@ -173,18 +175,6 @@
     if (error) {
         [[[UIAlertView alloc] initWithTitle:@"Error" message:error.description delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
     }
-}
-
-- (UIImage *)imageWithImage:(UIImage *)image scale:(CGFloat)scale {
-    if (scale > 1.0f) return image;
-
-    CGSize size = image.size;
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-    [image drawInRect:CGRectMake(0, 0, size.width*scale, size.height*scale)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-
-    return newImage;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

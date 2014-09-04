@@ -24,6 +24,7 @@ extern NSString * const kElevenMessage;
 extern NSString * const kTwentyOneMessage;
 extern NSString * const kMinusOneMessage;
 extern NSString * const kYourServeMessage;
+extern NSString * const kChangeStartingServerMessage;
 
 //Multipeer
 extern NSString * const kServerServiceType;

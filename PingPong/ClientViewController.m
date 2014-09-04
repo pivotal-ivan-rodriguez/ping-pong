@@ -29,18 +29,13 @@
     [super viewDidLoad];
 
     [MultipeerManager sharedInstance].clientDelegate = self;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-    //[self setupAsLeftPlayer];
+    [self setupAsLeftPlayer];
 }
 
 #pragma mark - MultipeerManagerDelegate methods
 
 - (void)hasConnected {
-    //[self initialSetup];
+    [self initialSetup];
 
     self.connectionStateLabel.text = @"Connected";
     self.connectionStateLabel.textColor = [UIColor greenColor];
@@ -107,6 +102,10 @@
     [[MultipeerManager sharedInstance] sendMessage:kMinusOneMessage toPeer:kServerKey];
 }
 
+- (IBAction)changeStartingServerTapped:(id)sender {
+    [[MultipeerManager sharedInstance] sendMessage:kChangeStartingServerMessage toPeer:kServerKey];
+}
+
 #pragma mark - UIImagePickerControllerDelegate Methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -121,7 +120,7 @@
         });
 
         NSString *savedImagePath = [self imagePath];
-        NSData *imageData = UIImagePNGRepresentation(image);
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
         [imageData writeToFile:savedImagePath atomically:NO];
 
         [[MultipeerManager sharedInstance] sendResourcePath:savedImagePath toPeer:kServerKey];
@@ -154,7 +153,6 @@
 
 - (void)initialSetup {
     [self setupGameWithPointsToWin:@([self pointsToWinFromSelection:self.gameSegmentedControl.selectedSegmentIndex])];
-    [[MultipeerManager sharedInstance] sendResourcePath:[self imagePath] toPeer:kServerKey];
 }
 
 - (NSString *)imagePath {

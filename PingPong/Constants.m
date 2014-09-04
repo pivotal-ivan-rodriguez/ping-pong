@@ -13,7 +13,7 @@
 //Keys
 NSString * const kLeftPlayerKey = @"Left";
 NSString * const kRightPlayerKey = @"Right";
-NSString * const kServerKey = @"Right";
+NSString * const kServerKey = @"Server";
 
 //Messages
 NSString * const kPointMessage = @"point";
@@ -23,6 +23,7 @@ NSString * const kLoseMessage = @"lose";
 NSString * const kElevenMessage = @"11";
 NSString * const kTwentyOneMessage = @"21";
 NSString * const kMinusOneMessage = @"-1";
+NSString * const kChangeStartingServerMessage = @"changeServer";
 NSString * const kYourServeMessage = @"yourServe";
 
 //Multipeer

@@ -49,6 +49,9 @@
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="changeStartingServerTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mXq-Cl-GRZ"/>
+                                        </connections>
                                     </button>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IoW-Ax-5dN">
                                         <rect key="frame" x="92" y="0.0" width="182" height="29"/>
