@@ -38,6 +38,7 @@
 - (void)playerDidWin;
 - (void)playerDidLose;
 - (void)playAudioWithResourceName:(NSString *)name;
+- (void)setupGameWithPointsToWin:(NSInteger)pointsToWin;
 
 @end
 

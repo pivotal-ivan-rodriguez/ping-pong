@@ -68,9 +68,7 @@
 }
 
 - (void)sendResourcePath:(NSString *)path toPeer:(NSString *)peerName {
-    [self.session sendResourceAtURL:[NSURL fileURLWithPath:path] withName:@"image" toPeer:[self getPeerFromPeerName:peerName] withCompletionHandler:^(NSError *error) {
-
-    }];
+    [self.session sendResourceAtURL:[NSURL fileURLWithPath:path] withName:@"image" toPeer:[self getPeerFromPeerName:peerName] withCompletionHandler:^(NSError *error) {}];
 }
 
 #pragma mark - MCSessionDelegate Methods
@@ -79,17 +77,22 @@
     if (state == MCSessionStateConnected) {
         if ([peerID.displayName isEqualToString:kLeftPlayerKey]) {
             [self.serverDelegate leftPlayerConnected];
-            [self.clientDelegate hasConnected];
+
         } else if ([peerID.displayName isEqualToString:kRightPlayerKey]) {
             [self.serverDelegate rightPlayerConnected];
+
+        } else if ([peerID.displayName isEqualToString:kServerKey]) {
             [self.clientDelegate hasConnected];
         }
+
     } else if (state == MCSessionStateNotConnected) {
         if ([peerID.displayName isEqualToString:kLeftPlayerKey]) {
             [self.serverDelegate leftPlayerDisconnected];
-            [self.clientDelegate hasDisconnected];
+
         } else if ([peerID.displayName isEqualToString:kRightPlayerKey]) {
             [self.serverDelegate rightPlayerDisconnected];
+
+        } else if ([peerID.displayName isEqualToString:kServerKey]) {
             [self.clientDelegate hasDisconnected];
         }
     }
@@ -101,6 +104,7 @@
         if ([dataString isEqualToString:kPointMessage]) {
             if ([peerID.displayName isEqualToString:kLeftPlayerKey]) {
                 [self.serverDelegate leftPlayerScored];
+
             } else if ([peerID.displayName isEqualToString:kRightPlayerKey]) {
                 [self.serverDelegate rightPlayerScored];
             }
@@ -109,20 +113,28 @@
 
         } else if ([dataString isEqualToString:kWinMessage]) {
             [self.clientDelegate playerDidWin];
+            
         } else if ([dataString isEqualToString:kLoseMessage]) {
             [self.clientDelegate playerDidLose];
+
         } else if ([dataString isEqualToString:kElevenMessage]) {
             [self.serverDelegate setupGameWithPointsToWin:11];
+            [self.clientDelegate setupGameWithPointsToWin:11];
+
         } else if ([dataString isEqualToString:kTwentyOneMessage]) {
             [self.serverDelegate setupGameWithPointsToWin:21];
+            [self.clientDelegate setupGameWithPointsToWin:21];
+
         } else if ([dataString isEqualToString:kMinusOneMessage]) {
             if ([peerID.displayName isEqualToString:kLeftPlayerKey]) {
                 [self.serverDelegate minusOneToLeftScore];
+
             } else if ([peerID.displayName isEqualToString:kRightPlayerKey]) {
                 [self.serverDelegate minusOneToRightScore];
             }
         } else if ([dataString isEqualToString:kYourServeMessage]) {
             [self.clientDelegate playAudioWithResourceName:kYourServeMessage];
+            
         } else if ([dataString isEqualToString:kChangeStartingServerMessage]) {
             [self.serverDelegate changeStartingServer];
         }

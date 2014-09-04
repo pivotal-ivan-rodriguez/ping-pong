@@ -65,6 +65,14 @@
     }
 }
 
+- (void)setupGameWithPointsToWin:(NSInteger)pointsToWin {
+    if (pointsToWin == 11) {
+        self.gameSegmentedControl.selectedSegmentIndex = 0;
+    } else {
+        self.gameSegmentedControl.selectedSegmentIndex = 1;
+    }
+}
+
 #pragma mark - IBActions
 
 - (IBAction)scoreButtonTapped:(UIButton *)sender {
@@ -87,7 +95,7 @@
 - (IBAction)gameSegmentedChanged:(UISegmentedControl *)sender {
     NSInteger pointsToWin = [self pointsToWinFromSelection:sender.selectedSegmentIndex];
 
-    [self setupGameWithPointsToWin:@(pointsToWin)];
+    [self changeGameWithPointsToWin:@(pointsToWin)];
 }
 
 - (IBAction)playerSegmentedChanged:(UISegmentedControl *)sender {
@@ -133,7 +141,7 @@
 
 #pragma mark - Private Methods
 
-- (void)setupGameWithPointsToWin:(NSNumber *)pointsToWin {
+- (void)changeGameWithPointsToWin:(NSNumber *)pointsToWin {
     [[MultipeerManager sharedInstance] sendMessage:[pointsToWin stringValue] toPeer:kServerKey];
 }
 
@@ -152,7 +160,7 @@
 }
 
 - (void)initialSetup {
-    [self setupGameWithPointsToWin:@([self pointsToWinFromSelection:self.gameSegmentedControl.selectedSegmentIndex])];
+    [self changeGameWithPointsToWin:@([self pointsToWinFromSelection:self.gameSegmentedControl.selectedSegmentIndex])];
 }
 
 - (NSString *)imagePath {

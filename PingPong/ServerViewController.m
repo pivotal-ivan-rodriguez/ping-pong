@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *rightPlayerConnectionStatusLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *leftServingImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *rightServingImageView;
+@property (weak, nonatomic) IBOutlet UILabel *pointsToWinLabel;
 
 @property (nonatomic) NSInteger leftScore;
 @property (nonatomic) NSInteger rightScore;
@@ -162,20 +163,23 @@
 
 - (void)setupGameWithPointsToWin:(NSInteger)pointsToWin {
     self.pointsToWin = pointsToWin;
+    NSString *pointsToWinString = [NSString stringWithFormat:@"%ld",(long)pointsToWin];
+    self.pointsToWinLabel.text = pointsToWinString;
+    [[MultipeerManager sharedInstance] broadcastString:pointsToWinString];
 }
 
 - (void)minusOneToLeftScore {
     if (self.leftScore > 0) {
         self.leftScore--;
+        [self scoreUpdated];
     }
-    [self scoreUpdated];
 }
 
 - (void)minusOneToRightScore {
     if (self.rightScore > 0) {
         self.rightScore--;
+        [self scoreUpdated];
     }
-    [self scoreUpdated];
 }
 
 - (void)didStartDownloadingPhoto {
@@ -232,10 +236,6 @@
 }
 
 #pragma mark - IBActions
-
-- (IBAction)endGameTapped:(id)sender {
-    [self resetGame];
-}
 
 - (IBAction)reconnectButtonTapped:(id)sender {
     [self showMultipeerBrowser];
