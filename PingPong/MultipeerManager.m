@@ -83,8 +83,6 @@
         } else if ([peerID.displayName isEqualToString:kRightPlayerKey]) {
             [self.serverDelegate rightPlayerConnected];
             [self.clientDelegate hasConnected];
-        } else if ([peerID.displayName isEqualToString:kServerKey]) {
-            [self.serverDelegate serverConnected];
         }
     } else if (state == MCSessionStateNotConnected) {
         if ([peerID.displayName isEqualToString:kLeftPlayerKey]) {
@@ -93,8 +91,6 @@
         } else if ([peerID.displayName isEqualToString:kRightPlayerKey]) {
             [self.serverDelegate rightPlayerDisconnected];
             [self.clientDelegate hasDisconnected];
-        } else if ([peerID.displayName isEqualToString:kServerKey]) {
-            [self.serverDelegate serverDisconnected];
         }
     }
 }

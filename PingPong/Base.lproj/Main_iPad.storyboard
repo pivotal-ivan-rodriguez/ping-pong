@@ -28,29 +28,37 @@
                                 <rect key="frame" x="0.0" y="601" width="768" height="423"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="paddle" translatesAutoresizingMaskIntoConstraints="NO" id="5oP-70-YVj">
+                                        <rect key="frame" x="12" y="36" width="395" height="276"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="paddle" translatesAutoresizingMaskIntoConstraints="NO" id="VEA-0j-mV7">
+                                        <rect key="frame" x="379" y="29" width="395" height="276"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Serving" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKm-DO-2M8">
-                                        <rect key="frame" x="12" y="245" width="343" height="60"/>
+                                        <rect key="frame" x="12" y="313" width="343" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="50"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Serving" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0IF-7o-E3K">
-                                        <rect key="frame" x="397" y="245" width="343" height="60"/>
+                                        <rect key="frame" x="397" y="313" width="343" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="50"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMi-Or-1Ow">
-                                        <rect key="frame" x="397" y="0.0" width="343" height="237"/>
+                                        <rect key="frame" x="397" y="48" width="343" height="237"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="200"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Od-Sa-60K">
-                                        <rect key="frame" x="12" y="0.0" width="343" height="237"/>
+                                        <rect key="frame" x="12" y="48" width="343" height="237"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="200"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -97,13 +105,6 @@
                                     <action selector="reconnectButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dwv-zA-yaL"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Server disconnected" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p44-dW-gXf">
-                                <rect key="frame" x="311" y="75" width="147" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -112,13 +113,14 @@
                         <outlet property="leftPlayerConnectionStatusLabel" destination="vfp-iF-Xh4" id="mWW-Tm-wB3"/>
                         <outlet property="leftPlayerImageView" destination="nxu-VJ-Ipp" id="g0g-qy-AGZ"/>
                         <outlet property="leftScoreLabel" destination="2Od-Sa-60K" id="4qP-oi-gN8"/>
+                        <outlet property="leftServingImageView" destination="5oP-70-YVj" id="m2X-K8-SmT"/>
                         <outlet property="leftServingLabel" destination="ZKm-DO-2M8" id="lBZ-VX-lcU"/>
                         <outlet property="photoProgressView" destination="Dfm-9M-V1O" id="R1k-iR-uBv"/>
                         <outlet property="rightPlayerConnectionStatusLabel" destination="pPr-8A-txP" id="2Hs-7m-fgA"/>
                         <outlet property="rightPlayerImageView" destination="9Vj-Q9-ALG" id="1Yo-59-SbZ"/>
                         <outlet property="rightScoreLabel" destination="gMi-Or-1Ow" id="S7F-Lb-b1A"/>
+                        <outlet property="rightServingImageView" destination="VEA-0j-mV7" id="U95-Bd-S0T"/>
                         <outlet property="rightServingLabel" destination="0IF-7o-E3K" id="fh3-17-paf"/>
-                        <outlet property="serverConnectionStatusLabel" destination="p44-dW-gXf" id="9MO-wq-Guj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -141,6 +143,9 @@
             <point key="canvasLocation" x="-412" y="141"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="paddle" width="500" height="365"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

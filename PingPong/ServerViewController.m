@@ -21,7 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *photoProgressView;
 @property (weak, nonatomic) IBOutlet UILabel *leftPlayerConnectionStatusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rightPlayerConnectionStatusLabel;
-@property (weak, nonatomic) IBOutlet UILabel *serverConnectionStatusLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *leftServingImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *rightServingImageView;
 
 @property (nonatomic) NSInteger leftScore;
 @property (nonatomic) NSInteger rightScore;
@@ -77,6 +78,8 @@
 - (void)toggleServer {
     self.leftServingLabel.hidden = !self.leftServingLabel.hidden;
     self.rightServingLabel.hidden = !self.rightServingLabel.hidden;
+    self.leftServingImageView.hidden = !self.leftServingImageView.hidden;
+    self.rightServingImageView.hidden = !self.rightServingImageView.hidden;
 }
 
 #pragma mark - UI updating helpers
@@ -208,16 +211,6 @@
 - (void)rightPlayerDisconnected {
     self.rightPlayerConnectionStatusLabel.text = [NSString stringWithFormat:@"%@ Player Disonnected",kRightPlayerKey];
     self.rightPlayerConnectionStatusLabel.textColor = [UIColor redColor];
-}
-
-- (void)serverConnected {
-    self.serverConnectionStatusLabel.text = [NSString stringWithFormat:@"%@ Connected",kServerKey];
-    self.serverConnectionStatusLabel.textColor = [UIColor greenColor];
-}
-
-- (void)serverDisconnected {
-    self.serverConnectionStatusLabel.text = [NSString stringWithFormat:@"%@ Disonnected",kServerKey];
-    self.serverConnectionStatusLabel.textColor = [UIColor redColor];
 }
 
 - (void)changeStartingServer {

@@ -26,8 +26,6 @@
 - (void)rightPlayerConnected;
 - (void)leftPlayerDisconnected;
 - (void)rightPlayerDisconnected;
-- (void)serverConnected;
-- (void)serverDisconnected;
 - (void)changeStartingServer;
 
 @end
