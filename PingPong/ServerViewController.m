@@ -353,4 +353,8 @@
     [self setupServer];
 }
 
+- (IBAction)reconnectTapped:(id)sender {
+    [self showMultipeerBrowser];
+}
+
 @end

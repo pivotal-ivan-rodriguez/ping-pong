@@ -82,7 +82,7 @@
 #pragma mark - IBActions
 
 - (IBAction)scoreButtonTapped:(UIButton *)sender {
-    [[MultipeerManager sharedInstance] sendMessage:kPointMessage toPeer:kServerKey];
+    [[MultipeerManager sharedInstance] broadcastString:kPointMessage];
 }
 
 - (IBAction)addPhotoButtonTapped:(id)sender {
@@ -95,7 +95,7 @@
 
 - (IBAction)resetGameButtonTapped:(UIBarButtonItem *)sender {
     [self resetGame];
-    [[MultipeerManager sharedInstance] sendMessage:kResetMessage toPeer:kServerKey];
+    [[MultipeerManager sharedInstance] broadcastString:kResetMessage];
 }
 
 - (IBAction)gameSegmentedChanged:(UISegmentedControl *)sender {
@@ -113,15 +113,15 @@
 }
 
 - (IBAction)opponentScoredButtonTapped:(id)sender {
-    [[MultipeerManager sharedInstance] sendMessage:kOpponentPointMessage toPeer:kServerKey];
+    [[MultipeerManager sharedInstance] broadcastString:kOpponentPointMessage];
 }
 
 - (IBAction)minusOnePoint:(UIBarButtonItem *)sender {
-    [[MultipeerManager sharedInstance] sendMessage:kMinusOneMessage toPeer:kServerKey];
+    [[MultipeerManager sharedInstance] broadcastString:kMinusOneMessage];
 }
 
 - (IBAction)changeStartingServerTapped:(id)sender {
-    [[MultipeerManager sharedInstance] sendMessage:kChangeStartingServerMessage toPeer:kServerKey];
+    [[MultipeerManager sharedInstance] broadcastString:kChangeStartingServerMessage];
 }
 
 #pragma mark - UIImagePickerControllerDelegate Methods
@@ -152,7 +152,7 @@
 #pragma mark - Private Methods
 
 - (void)changeGameWithPointsToWin:(NSNumber *)pointsToWin {
-    [[MultipeerManager sharedInstance] sendMessage:[pointsToWin stringValue] toPeer:kServerKey];
+    [[MultipeerManager sharedInstance] broadcastString:[pointsToWin stringValue]];
 }
 
 - (void)setupAsLeftPlayer {
