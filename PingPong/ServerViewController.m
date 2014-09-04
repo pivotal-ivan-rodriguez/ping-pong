@@ -56,11 +56,22 @@
 }
 
 - (BOOL)leftPlayerWon {
-    return (self.leftScore >= self.pointsToWin);
+    return (self.leftScore >= self.pointsToWin && [self scoreDeltasGreaterThanOne]);
 }
 
 - (BOOL)rightPlayerWon {
-    return (self.rightScore >= self.pointsToWin);
+    return (self.rightScore >= self.pointsToWin && [self scoreDeltasGreaterThanOne]);
+}
+
+- (BOOL)scoreDeltasGreaterThanOne {
+    NSInteger delta = self.leftScore-self.rightScore;
+    if (self.leftScore > self.rightScore) {
+        return delta > 1;
+    } else if (self.leftScore < self.rightScore) {
+        return -delta > 1;
+    } else {
+        return NO;
+    }
 }
 
 #pragma mark - UI updating helpers
@@ -152,12 +163,16 @@
 }
 
 - (void)minusOneToLeftScore {
-    self.leftScore--;
+    if (self.leftScore > 0) {
+        self.leftScore--;
+    }
     [self scoreUpdated];
 }
 
 - (void)minusOneToRightScore {
-    self.rightScore--;
+    if (self.rightScore > 0) {
+        self.rightScore--;
+    }
     [self scoreUpdated];
 }
 

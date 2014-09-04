@@ -90,12 +90,7 @@
 }
 
 - (IBAction)gameSegmentedChanged:(UISegmentedControl *)sender {
-    NSInteger pointsToWin = -1;
-    if (sender.selectedSegmentIndex == 0) {
-        pointsToWin = 11;
-    } else if (sender.selectedSegmentIndex == 1) {
-        pointsToWin = 21;
-    }
+    NSInteger pointsToWin = [self pointsToWinFromSelection:sender.selectedSegmentIndex];
 
     [self setupGameWithPointsToWin:@(pointsToWin)];
 }
@@ -120,17 +115,16 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0), ^{
 
         UIImage *image = info[UIImagePickerControllerOriginalImage];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.profilePicture.image = image;
+            self.addProfileImageLabel.hidden = YES;
+        });
 
         NSString *savedImagePath = [self imagePath];
         NSData *imageData = UIImagePNGRepresentation(image);
         [imageData writeToFile:savedImagePath atomically:NO];
 
         [[MultipeerManager sharedInstance] sendResourcePath:savedImagePath toPeer:kServerKey];
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.profilePicture.image = image;
-            self.addProfileImageLabel.hidden = YES;
-        });
     });
 }
 
@@ -159,7 +153,7 @@
 }
 
 - (void)initialSetup {
-    [self setupGameWithPointsToWin:@(11)];
+    [self setupGameWithPointsToWin:@([self pointsToWinFromSelection:self.gameSegmentedControl.selectedSegmentIndex])];
     [[MultipeerManager sharedInstance] sendResourcePath:[self imagePath] toPeer:kServerKey];
 }
 
@@ -168,6 +162,16 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:@"savedImage.png"];
     return savedImagePath;
+}
+
+- (NSInteger)pointsToWinFromSelection:(NSInteger)index{
+    NSInteger pointsToWin = -1;
+    if (index == 0) {
+        pointsToWin = 11;
+    } else if (index == 1) {
+        pointsToWin = 21;
+    }
+    return pointsToWin;
 }
 
 @end

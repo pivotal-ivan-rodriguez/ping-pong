@@ -99,7 +99,6 @@
     }
 }
 
-
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID{
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
