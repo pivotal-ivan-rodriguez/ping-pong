@@ -144,16 +144,12 @@
 }
 
 - (void)setupLeftImage:(UIImage *)image {
-    UIImage * portraitImage = [[UIImage alloc] initWithCGImage: image.CGImage
-                                                         scale: 1.0
-                                                   orientation: UIImageOrientationRight];
+    UIImage *portraitImage = [[UIImage alloc] initWithCGImage:image.CGImage scale:1.0 orientation:UIImageOrientationRight];
     self.leftPlayerImageView.image = portraitImage;
 }
 
 - (void)setupRightImage:(UIImage *)image {
-    UIImage * portraitImage = [[UIImage alloc] initWithCGImage: image.CGImage
-                                                         scale: 1.0
-                                                   orientation: UIImageOrientationRight];
+    UIImage *portraitImage = [[UIImage alloc] initWithCGImage:image.CGImage scale:1.0 orientation:UIImageOrientationRight];
     self.rightPlayerImageView.image = portraitImage;
 }
 
@@ -187,7 +183,7 @@
 
 - (void)photoDownloadPercent:(CGFloat)percent {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (percent > 0.99f) {
+        if (percent == 1.0f) {
             self.photoProgressView.hidden = YES;
         }
         self.photoProgressView.progress = percent;

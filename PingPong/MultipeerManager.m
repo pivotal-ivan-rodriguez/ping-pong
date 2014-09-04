@@ -153,6 +153,8 @@
             [self.serverDelegate setupRightImage:image];
         }
     });
+
+    [self.serverDelegate photoDownloadPercent:1.0f];
 }
 
 - (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID{
