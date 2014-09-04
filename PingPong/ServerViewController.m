@@ -42,11 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [MultipeerManager sharedInstance].serverDelegate = self;
-    [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:kServerKey];
-    [[MultipeerManager sharedInstance] advertiseSelf:YES];
-    [self showMultipeerBrowser];
-
+    [self setupServer];
     self.leftScore = 0;
     self.rightScore = 0;
 
@@ -104,6 +100,13 @@
     for (UIView * view in self.confettiView.subviews) {
         [view removeFromSuperview];
     }
+}
+
+- (void)setupServer {
+    [MultipeerManager sharedInstance].serverDelegate = self;
+    [[MultipeerManager sharedInstance] setupPeerAndSessionWithDisplayName:kServerKey];
+    [[MultipeerManager sharedInstance] advertiseSelf:YES];
+    [self showMultipeerBrowser];
 }
 
 #pragma mark - UI updating helpers
@@ -180,6 +183,8 @@
     self.rightScore = 0;
     self.rightScoreLabel.text = @"0";
     [self stopConfettiAnimation];
+
+    [[MultipeerManager sharedInstance] broadcastString:kResetMessage];
 }
 
 #pragma mark - MultipeerServerDelegate methods
@@ -206,7 +211,6 @@
 
 - (void)triggeredReset {
     [self resetGame];
-    [[MultipeerManager sharedInstance] broadcastString:kResetMessage];
 }
 
 - (void)setupGameWithPointsToWin:(NSInteger)pointsToWin {
@@ -284,8 +288,13 @@
 
 #pragma mark - IBActions
 
-- (IBAction)reconnectButtonTapped:(id)sender {
-    [self showMultipeerBrowser];
+- (IBAction)resetGameTapped:(id)sender {
+    [self resetGame];
+}
+
+- (IBAction)restartServerTapped:(id)sender {
+    [[MultipeerManager sharedInstance] disconnectServer];
+    [self setupServer];
 }
 
 @end

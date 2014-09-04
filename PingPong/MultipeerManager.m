@@ -52,6 +52,10 @@
     }
 }
 
+- (void)disconnectServer {
+    [self.session disconnect];
+}
+
 - (void)broadcastString:(NSString *)string {
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
     [self sendData:data toPeerIDs:self.session.connectedPeers];

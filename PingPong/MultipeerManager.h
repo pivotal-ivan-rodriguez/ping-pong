@@ -50,6 +50,7 @@
 - (void)setupPeerAndSessionWithDisplayName:(NSString *)displayName;
 - (MCBrowserViewController *)createMCBrowser;
 - (void)advertiseSelf:(BOOL)shouldAdvertise;
+- (void)disconnectServer;
 
 - (void)broadcastString:(NSString *)string;
 - (void)sendMessage:(NSString *)string toPeer:(NSString *)peerName;

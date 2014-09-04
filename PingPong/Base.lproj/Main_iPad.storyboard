@@ -121,9 +121,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ONo-nu-QKf">
-                        <barButtonItem key="rightBarButtonItem" title="Reconnect" id="axh-nq-qlY">
+                        <barButtonItem key="leftBarButtonItem" title="Restart Server" id="khe-AQ-FBT">
                             <connections>
-                                <action selector="reconnectButtonTapped:" destination="BYZ-38-t0r" id="6eg-w7-KEa"/>
+                                <action selector="restartServerTapped:" destination="BYZ-38-t0r" id="T77-EY-mBh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Reset Game" id="axh-nq-qlY">
+                            <connections>
+                                <action selector="resetGameTapped:" destination="BYZ-38-t0r" id="8nU-9r-7ca"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
